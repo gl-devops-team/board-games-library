@@ -1,0 +1,37 @@
+<!-- games/templates/games/game_list.html -->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista gier planszowych</title>
+    <style>
+        table { border-collapse: collapse; width: 80%; margin: auto; }
+        th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Lista gier planszowych</h1>
+    <table>
+        <tr>
+            <th>Nazwa</th>
+            <th>Liczba graczy</th>
+            <th>Czas gry</th>
+            <th>Opis</th>
+        </tr>
+        {% for game in games %}
+        <tr>
+            <td>{{ game.name }}</td>
+            <td>{{ game.players }}</td>
+            <td>{{ game.time }}</td>
+            <td>{{ game.description }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Brak gier do wyświetlenia</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
