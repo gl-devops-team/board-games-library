@@ -17,7 +17,7 @@
 
         <table id="gamesTable">
             <thead>
-                <tr>
+                <tr class="game-row" data-image="{{ game.image_url }}">
                     <th onclick="sortTable(0)">Nazwa ▲▼</th>
                     <th onclick="sortTable(1)">Liczba graczy ▲▼</th>
                     <th onclick="sortTable(2)">Czas gry ▲▼</th>
@@ -26,7 +26,7 @@
             </thead>
             <tbody>
                 {% for game in games %}
-                <tr>
+                <tr class="game-row" data-image="{{ game.image_url }}">
                     <td>{{ game.name }}</td>
                     <td>{{ game.players }}</td>
                     <td>{{ game.time }}</td>

@@ -29,7 +29,8 @@ def get_games_from_xlsx(file_path: str):
             'name': row_data.get('Name'),
             'players': row_data.get('Number of players'),
             'time': row_data.get('Average game time [h:mm]'),
-            'description': row_data.get('Category')
+            'description': row_data.get('Category'),
+            'image_url': row_data.get('Image URL', '')
         })
 
     # Return the list of game dictionaries
