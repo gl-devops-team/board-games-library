@@ -57,3 +57,19 @@ tr:hover {
     text-align: center;
     color: #999;
 }
+
+.tooltip {
+    position: absolute;
+    display: none;
+    border: 1px solid #333;
+    background-color: #fff;
+    padding: 5px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.tooltip img {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+}

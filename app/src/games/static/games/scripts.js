@@ -58,4 +58,30 @@ document.addEventListener('DOMContentLoaded', () => {
             rowsArray.forEach(row => tbody.appendChild(row));
         });
     });
+    
+    // --------------------
+    // 3️⃣ Tooltip with image
+    // --------------------
+    const tooltip = document.createElement('div');
+    tooltip.classList.add('tooltip');
+    document.body.appendChild(tooltip);
+
+    document.querySelectorAll('.game-row').forEach(row => {
+        row.addEventListener('mouseenter', () => {
+            const imageUrl = row.getAttribute('data-image');
+            if (imageUrl) {
+                tooltip.innerHTML = `<img src="${imageUrl}" alt="Game Image">`;
+                tooltip.style.display = 'block';
+            }
+        });
+
+        row.addEventListener('mousemove', e => {
+            tooltip.style.left = e.pageX + 15 + 'px';
+            tooltip.style.top = e.pageY + 15 + 'px';
+        });
+
+        row.addEventListener('mouseleave', () => {
+            tooltip.style.display = 'none';
+        });
+    });
 });
