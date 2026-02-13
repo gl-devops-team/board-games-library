@@ -1,37 +1,47 @@
-<!-- games/templates/games/game_list.html -->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>Lista gier planszowych</title>
-    <style>
-        table { border-collapse: collapse; width: 80%; margin: auto; }
-        th, td { border: 1px solid #333; padding: 8px; text-align: center; }
-        th { background-color: #f2f2f2; }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'games/styles.css' %}">
+    <script src="{% static 'games/scripts.js' %}"></script>
 </head>
 <body>
-    <h1 style="text-align:center;">Lista gier planszowych</h1>
-    <table>
-        <tr>
-            <th>Nazwa</th>
-            <th>Liczba graczy</th>
-            <th>Czas gry</th>
-            <th>Opis</th>
-        </tr>
-        {% for game in games %}
-        <tr>
-            <td>{{ game.name }}</td>
-            <td>{{ game.players }}</td>
-            <td>{{ game.time }}</td>
-            <td>{{ game.description }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4">Brak gier do wyświetlenia</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="container">
+        <h1>Lista gier planszowych</h1>
+
+        <!-- Search input -->
+        <input type="text" id="searchBox" placeholder="Szukaj gry po nazwie...">
+
+        <table id="gamesTable">
+            <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Liczba graczy</th>
+                    <th>Czas gry</th>
+                    <th>Opis</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in games %}
+                <tr>
+                    <td>{{ game.name }}</td>
+                    <td>{{ game.players }}</td>
+                    <td>{{ game.time }}</td>
+                    <td>{{ game.description }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="no-data">Brak gier do wyświetlenia</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Link to external JavaScript -->
+    <script src="{% static 'games/scripts.js' %}"></script>
 </body>
 </html>
