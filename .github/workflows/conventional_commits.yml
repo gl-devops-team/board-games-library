@@ -1,0 +1,28 @@
+name: Conventional Commits Validation
+
+on:
+  pull_request:
+    types: [ opened, edited, reopened, synchronize ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+      with:
+        ref: "${{ github.event.pull_request.head.sha }}"
+
+    - name: Setup Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: "3.12"
+
+    - name: Run validation script
+      run: |
+        python3 pipeline/commit_checker.py \
+          "${{ github.head_ref }}" \
+          "${{ github.event.pull_request.title }}" \
+          "${{ github.event.pull_request.body }}" \
+          "${{ github.event.pull_request.head.sha }}"
