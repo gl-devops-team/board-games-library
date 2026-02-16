@@ -35,24 +35,40 @@ document.addEventListener('DOMContentLoaded', () => {
         header.addEventListener('click', () => {
             const rowsArray = Array.from(tbody.rows);
 
-            // Determine sort direction
             let direction = sortState[index] === 'asc' ? 'desc' : 'asc';
             sortState[index] = direction;
 
+            Array.from(headers).forEach(h => h.classList.remove('asc', 'desc'));
+            header.classList.add(direction);
+            
             rowsArray.sort((rowA, rowB) => {
-                const aText = rowA.cells[index] ? a.cells[index].innerText.toLowerCase() : '';
-                const bText = rowB.cells[index] ? b.cells[index].innerText.toLowerCase() : '';
+                const aText = rowA.cells[index]
+                    ? rowA.cells[index].innerText.trim().toLowerCase()
+                    : '';
+
+                const bText = rowB.cells[index]
+                    ? rowB.cells[index].innerText.trim().toLowerCase()
+                    : '';
 
                 // Try numeric sort if possible
-                const aNum = parseFloat(aText.replace(/[^0-9.-]+/g,""));
-                const bNum = parseFloat(bText.replace(/[^0-9.-]+/g,""));
-                if (!isNaN(aNum) && !isNaN(bNum)) {
-                    return direction === 'asc' ? aNum - bNum : bNum - aNum;
+                const isANumber = /^-?\d+(\.\d+)?$/.test(aText);
+                const isBNumber = /^-?\d+(\.\d+)?$/.test(bText);
+
+                if (isANumber && isBNumber) {
+                    const aNum = parseFloat(aText);
+                    const bNum = parseFloat(bText);
+
+                    return direction === 'asc'
+                        ? aNum - bNum
+                        : bNum - aNum;
                 }
 
                 // Text sort
-                return direction === 'asc' ? (aText > bText ? 1 : -1) : (aText < bText ? 1 : -1);
+                return direction === 'asc'
+                    ? aText.localeCompare(bText, 'pl', { numeric: true })
+                    : bText.localeCompare(aText, 'pl', { numeric: true });
             });
+
 
             // Reattach sorted rows
             rowsArray.forEach(row => tbody.appendChild(row));

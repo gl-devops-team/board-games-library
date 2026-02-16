@@ -73,3 +73,25 @@ tr:hover {
     max-height: 200px;
     display: block;
 }
+
+.arrow {
+    color: white;       /* domyślnie białe */
+    font-size: 12px;
+    margin-left: 2px;
+}
+
+th.asc .up {
+    color: black;
+}
+
+th.asc .down {
+    color: white;
+}
+
+th.desc .up {
+    color: white;
+}
+
+th.desc .down {
+    color: black;
+}
