@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let direction = sortState[index] === 'asc' ? 'desc' : 'asc';
             sortState[index] = direction;
 
-            rowsArray.sort((a, b) => {
-                const aText = a.cells[index] ? a.cells[index].innerText.toLowerCase() : '';
-                const bText = b.cells[index] ? b.cells[index].innerText.toLowerCase() : '';
+            rowsArray.sort((rowA, rowB) => {
+                const aText = rowA.cells[index] ? a.cells[index].innerText.toLowerCase() : '';
+                const bText = rowB.cells[index] ? b.cells[index].innerText.toLowerCase() : '';
 
                 // Try numeric sort if possible
                 const aNum = parseFloat(aText.replace(/[^0-9.-]+/g,""));
@@ -75,9 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        row.addEventListener('mousemove', e => {
-            tooltip.style.left = e.pageX + 15 + 'px';
-            tooltip.style.top = e.pageY + 15 + 'px';
+        row.addEventListener('mousemove', mouseEvent => {
+            tooltip.style.left = mouseEvent.pageX + 15 + 'px';
+            tooltip.style.top = mouseEvent.pageY + 15 + 'px';
         });
 
         row.addEventListener('mouseleave', () => {
