@@ -83,7 +83,7 @@ def get_commit_message(sha: str) -> str:
 
 
 def validate_branch_name(branch: str) -> str:
-    pattern = rf"^({'|'.join(ALLOWED_TYPES)})/[0-9]+/[a-z0-9]+([._-][a-z0-9]+)*$"
+    pattern = rf"^({'|'.join(ALLOWED_TYPES)})/gh-[0-9]+/[a-z0-9]+([._-][a-z0-9]+)*$"
     match = re.match(pattern, branch)
 
     if not match:
