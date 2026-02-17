@@ -41,22 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
             Array.from(headers).forEach(h => h.classList.remove('asc', 'desc'));
             header.classList.add(direction);
             
-            rowsArray.sort((rowA, rowB) => {
-                const aText = rowA.cells[index]
-                    ? rowA.cells[index].innerText.trim().toLowerCase()
+
+            // Sort function ASC / DESC
+            rowsArray.sort((sortASC, sortDESC) => {
+                const firstComparableValue = sortASC.cells[index]
+                    ? sortASC.cells[index].innerText.trim().toLowerCase()
                     : '';
 
-                const bText = rowB.cells[index]
-                    ? rowB.cells[index].innerText.trim().toLowerCase()
+                const secondComparableValue = sortDESC.cells[index]
+                    ? sortDESC.cells[index].innerText.trim().toLowerCase()
                     : '';
 
                 // Try numeric sort if possible
-                const isANumber = /^-?\d+(\.\d+)?$/.test(aText);
-                const isBNumber = /^-?\d+(\.\d+)?$/.test(bText);
+                const isANumber = /^-?\d+(\.\d+)?$/.test(firstComparableValue);
+                const isBNumber = /^-?\d+(\.\d+)?$/.test(secondComparableValue);
 
                 if (isANumber && isBNumber) {
-                    const aNum = parseFloat(aText);
-                    const bNum = parseFloat(bText);
+                    const aNum = parseFloat(firstComparableValue);
+                    const bNum = parseFloat(secondComparableValue);
 
                     return direction === 'asc'
                         ? aNum - bNum
@@ -65,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Text sort
                 return direction === 'asc'
-                    ? aText.localeCompare(bText, 'pl', { numeric: true })
-                    : bText.localeCompare(aText, 'pl', { numeric: true });
+                    ? firstComparableValue.localeCompare(secondComparableValue, 'pl', { numeric: true })
+                    : secondComparableValue.localeCompare(firstComparableValue, 'pl', { numeric: true });
             });
 
 
