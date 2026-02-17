@@ -1,0 +1,23 @@
+[run]
+omit = 
+    */__init__.py
+    */games/admin.py
+    */games/apps.py
+    */games/models.py
+    */app/src/manage.py
+    */settings.py
+    */boardgames/*
+    */migrations/*
+    */tests/*
+
+[report]
+omit =
+    */__init__.py
+    */games/admin.py
+    */games/apps.py
+    */games/models.py
+    */app/src/manage.py
+    */settings.py
+    */boardgames/*
+    */migrations/*
+    */tests/*
