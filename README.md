@@ -2,9 +2,38 @@
 
 PoC project for DevOps in GL.
 
-## Features
+## How to play with it locally
 
-TODO
+To participate in development with this repository you need to download it via git:
+
+```git
+git pull git@github.com:gl-devops-team/board-games-library.git
+```
+
+or
+
+```git
+git pull git@github.com:gl-devops-team/board-games-library.git
+```
+
+To use all current addons like PyTest or Ruff please use `requirements-dev` file as a dependencies list for `pip`:
+
+```git
+pip install -r requirements-dev.txt
+```
+
+The `requirements.txt` file is only for production and it's reduced to only required dependencies for running the application.
+
+Other documentation files you can find in [docs folder](https://github.com/gl-devops-team/board-games-library/tree/main/docs).
+
+## Repo features
+
+This repository uses various tools to help developers contribute high-quality code. The list is below:
+
+> - **Django** – high-level Python web framework powering the web application layer
+> - **Pre-commit** – Git hook manager that automatically runs code quality checks before each commit  
+> - **PyTest** – unit testing framework  
+> - **Ruff** – fast Python linter and formatter
 
 ## Commit message syntax
 
