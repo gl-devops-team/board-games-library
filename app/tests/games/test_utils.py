@@ -81,7 +81,8 @@ def test_get_games_from_xlsx_returns_expected_data(mock_load_workbook):
 
 @patch("games.utils.load_workbook")
 def test_get_games_from_xlsx_missing_column(mock_load_workbook):
-    """This test checks how the function handles missing columns in the Excel sheet. It verifies that:
+    """This test checks how the function handles missing columns in the Excel sheet.
+    It verifies that:
     - The function does not raise an error when expected columns are missing.
     - The returned dictionaries contain None for missing columns.
     """
@@ -127,7 +128,8 @@ def test_get_games_from_xlsx_missing_column(mock_load_workbook):
 
 @patch("games.utils.load_workbook")
 def test_get_games_from_xlsx_empty_sheet(mock_load_workbook):
-    """This test verifies that the function can handle an empty Excel sheet gracefully. It checks that:
+    """This test verifies that the function can handle an empty Excel sheet gracefully.
+    It checks that:
     - The function returns an empty list when there are no data rows.
     - The function does not raise an error when the sheet is empty.
     """

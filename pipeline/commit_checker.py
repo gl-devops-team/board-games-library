@@ -3,7 +3,6 @@
 import re
 import subprocess
 import sys
-from typing import Optional
 
 ALLOWED_TYPES = [
     "feat",
@@ -39,7 +38,7 @@ def normalize_issue_id(raw: str) -> str:
     return raw
 
 
-def extract_issue_id(text: Optional[str], where: str) -> str:
+def extract_issue_id(text: str | None, where: str) -> str:
     if not text:
         throw_gh_error_msg(f"Missing {where}. Issue-ID is required.")
 
