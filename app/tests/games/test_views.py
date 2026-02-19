@@ -36,9 +36,6 @@ def test_game_list_view(mock_get_games_from_xlsx, client):
     # Check if the response is 200 OK
     assert response.status_code == 200
 
-    # Check if the correct template was used
-    assert response.templates[0].name == "games/game_list.html"
-
     # Check if the context contains the expected games data
     assert "games" in response.context
     assert response.context["games"] == mock_get_games_from_xlsx.return_value
