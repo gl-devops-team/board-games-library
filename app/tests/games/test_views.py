@@ -27,7 +27,7 @@ def test_game_list_view(mock_get_games_from_xlsx, client):
         },
     ]
 
-    url = reverse("game_list")
+    url = reverse("game-list")
     response = client.get(url)
 
     # Check if get_games_from_xlsx was called once
