@@ -97,7 +97,8 @@ def validate_branch_name(branch: str) -> str:
 
 def validate_pr_title(message: str) -> str:
     pattern = rf"^({'|'.join(ALLOWED_TYPES)}): [A-Za-z0-9].+$"
-    match = re.match(pattern, message)
+    pr_title = message.lower()
+    match = re.match(pattern, pr_title)
 
     if not match:
         throw_gh_error_msg(
