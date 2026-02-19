@@ -1,0 +1,97 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #fafafa;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Search box */
+#searchBox {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #F37037;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.no-data {
+    text-align: center;
+    color: #999;
+}
+
+.tooltip {
+    position: absolute;
+    display: none;
+    border: 1px solid #333;
+    background-color: #fff;
+    padding: 5px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.tooltip img {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+}
+
+.arrow {
+    color: white;
+    font-size: 12px;
+    margin-left: 2px;
+}
+
+th.asc .up {
+    color: black;
+}
+
+th.asc .down {
+    color: white;
+}
+
+th.desc .up {
+    color: white;
+}
+
+th.desc .down {
+    color: black;
+}
