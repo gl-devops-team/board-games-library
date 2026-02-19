@@ -1,5 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
 from games.utils import get_games_from_xlsx
 
 SHEET_NAME = "Wroclaw_list of boardgames.xlsx"
