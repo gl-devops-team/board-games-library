@@ -12,18 +12,18 @@ function App() {
       .then(data => setGames(data));
   }, []);
 
-  // Filtrowanie
+  // Filter function
   const filteredGames = games.filter(game =>
     game.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Sortowanie
-  const sortedGames = [...filteredGames].sort((a, b) => {
+  // Sorting function
+  const sortedGames = [...filteredGames].sort((firstGame, secondGame) => {
     if (!sortConfig) return 0;
 
     const { key, direction } = sortConfig;
-    if (a[key] < b[key]) return direction === "asc" ? -1 : 1;
-    if (a[key] > b[key]) return direction === "asc" ? 1 : -1;
+    if (firstGame[key] < secondGame[key]) return direction === "asc" ? -1 : 1;
+    if (firstGame[key] > secondGame[key]) return direction === "asc" ? 1 : -1;
     return 0;
   });
 

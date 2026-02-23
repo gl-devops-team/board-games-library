@@ -60,8 +60,6 @@ cover/
 
 # Django stuff:
 *.log
-*/migrations/*.py
-!*/migrations/__init__.py
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -141,10 +139,6 @@ celerybeat.pid
 
 # Environments
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 .envrc
 .venv
 env/
@@ -225,14 +219,3 @@ lerna-debug.log*
 node_modules
 dist-ssr
 *.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
