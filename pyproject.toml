@@ -65,6 +65,6 @@ line-ending = "auto"
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "boardgames.settings"
 django_find_project = false
-pythonpath = ["app", "app/src"]
+pythonpath = ["app", "app/backend"]
 testpaths = ["app/tests"]
 addopts = "-vvv"
