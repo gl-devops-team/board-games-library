@@ -29,5 +29,5 @@ jobs:
 
     - name: Run unit tests with coverage
       run: |
-        pytest app/tests --cov=games --cov-report=term-missing --cov-config=.coveragerc -vvv
-        # pytest app/tests --cov=boardgames --cov-report=term-missing --cov-config=.coveragerc -vvv
+        pytest app/tests/backend --cov=games --cov-report=term-missing --cov-config=.coveragerc -vvv
+        # pytest app/tests/backend --cov=boardgames --cov-report=term-missing --cov-config=.coveragerc -vvv
