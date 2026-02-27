@@ -1,0 +1,17 @@
+-r requirements.in
+
+# Code quality
+ruff
+pre-commit
+
+# Testing
+pytest
+pytest-cov
+pytest-django
+
+# Security
+bandit
+pip-audit
+
+# Dependency management
+pip-tools
