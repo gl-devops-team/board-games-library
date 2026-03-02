@@ -31,8 +31,8 @@ jobs:
 
     - name: Verify lock files are up to date
       run: |
-        pip-compile requirements.in -o requirements.txt --quiet --strip-extras
-        pip-compile requirements-dev.in -o requirements-dev.txt --quiet --strip-extras
+        pip-compile pyproject.toml -o requirements.txt --quiet --strip-extras
+        pip-compile pyproject.toml --extra dev -o requirements-dev.txt --quiet --strip-extras
         git diff --exit-code
 
     - name: Run Linter
