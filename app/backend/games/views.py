@@ -5,7 +5,7 @@ import os
 
 from games.utils import get_games_from_xlsx
 
-FILE_NAME = "boardgamelist.xlsx"
+FILE_NAME = "Wroclaw_list of boardgames.xlsx"
 
 @api_view(["GET"])
 def game_list(request):
