@@ -7,9 +7,13 @@ function App() {
   const [sortConfig, setSortConfig] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/games/")
+    fetch("http://localhost:8000/api/games/")
       .then(res => res.json())
-      .then(data => setGames(data));
+      .then(data => {
+        console.log("DATA:", data);
+        setGames(data);
+      })
+      .catch(err => console.error("BŁĄD:", err));
   }, []);
 
   // Filter function
