@@ -1,4 +1,55 @@
 # -----------------------------
+# Project settings
+# -----------------------------
+
+[project]
+name = "boardgames"
+version = "0.1.0"
+description = "A PoC project for board games"
+authors = [
+    { name = "Dariusz Drozdek", email = "dariusz.drozdek@globallogic.com" },
+    { name = "Krzysztof Szpieg", email = "krzysztof.szpieg@globallogic.com" },
+    { name = "Rafał Tatuń", email = "rafal.tatun@globallogic.com" }
+]
+license = "MIT"
+requires-python = ">=3.12"
+
+# -----------------------------
+# Project build dependencies
+# -----------------------------
+
+dependencies = [
+    "Django==6.0.2",
+    "django-cors-headers==4.9.0",
+    "djangorestframework==3.16.1",
+    "gunicorn==25.1.0",
+    "openpyxl==3.1.5"
+]
+
+# -----------------------------
+# Dependencies for development and testing
+# -----------------------------
+
+[project.optional-dependencies]
+dev = [
+    # Code quality
+    "ruff==0.15.2",
+    "pre-commit==4.5.1",
+
+    # Testing
+    "pytest==9.0.2",
+    "pytest-cov==7.0.0",
+    "pytest-django==4.12.0",
+
+    # Security
+    "bandit==1.9.3",
+    "pip-audit==2.10.0",
+
+    # Dependency management
+    "pip-tools==7.5.3",
+]
+
+# -----------------------------
 # Ruff configuration
 # -----------------------------
 
