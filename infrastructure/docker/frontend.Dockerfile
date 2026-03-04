@@ -5,10 +5,10 @@ FROM node:20
 WORKDIR /app/frontend
 
 # Copy package.json and package-lock.json to install dependencies
-COPY app/frontend/package*.json ./
+COPY ../../app/frontend/package*.json ./
 
 # Copy the rest of the frontend source code
-COPY app/frontend/ .
+COPY ../../app/frontend/ .
 
 # Install dependencies including 'serve' globally
 RUN npm install && npm install -g serve
@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Start the app using 'serve' to serve static files from the build folder
-CMD ["serve", "-s", "build", "-l", "3000"]
+CMD ["serve", "-s", "dist", "-l", "3000"]
