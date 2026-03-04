@@ -1,0 +1,62 @@
+name: Generate Automatic Documentation
+
+on:
+  push:
+    branches:
+      - develop
+
+permissions:
+  contents: write
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ---------------------------
+      # Backend Documentation (Python)
+      # ---------------------------
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python doc tools
+        run: |
+          pip install pydoc-markdown
+
+      - name: Generate backend documentation
+        run: |
+          mkdir -p docs/backend
+          pydoc-markdown -m apps.backend > docs/backend/backend.md || true
+
+      # ---------------------------
+      # Frontend Documentation (JS / JSX)
+      # ---------------------------
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install JSDoc
+        run: npm install -g jsdoc-to-markdown
+
+      - name: Generate frontend documentation
+        run: |
+          mkdir -p docs/frontend
+          jsdoc2md "apps/frontend/**/*.js" > docs/frontend/frontend.md || true
+          jsdoc2md "apps/frontend/**/*.jsx" >> docs/frontend/frontend.md || true
+
+      # ---------------------------
+      # Commit generated docs
+      # ---------------------------
+      - name: Commit and push documentation
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add docs/
+          git commit -m "Auto-generate documentation [CI]" || echo "No changes to commit"
+          git push
