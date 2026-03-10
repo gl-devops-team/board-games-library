@@ -34,9 +34,9 @@ Before starting, make sure you have installed and configured:
 
     Required scopes:
 
-    `read:packages – allows pulling images from GHCR`
-    `write:packages – required only if pushing images`
-    `delete:packages – optional`
+    `read:packages – allows pulling images from GHCR
+    write:packages – required only if pushing images
+    delete:packages – optional`
 
     6. Click Generate token.
     7. Copy the generated token immediately (GitHub will not show it again).
@@ -47,10 +47,10 @@ Before starting, make sure you have installed and configured:
     
     Run the following command:
 
-    kubectl create secret docker-registry ghcr-secret \
+    `kubectl create secret docker-registry ghcr-secret \
     --docker-server=ghcr.io \
     --docker-username=<YOUR_GITHUB_USERNAME> \
-    --docker-password=<YOUR_GITHUB_TOKEN>
+    --docker-password=<YOUR_GITHUB_TOKEN>`
 
 ---
 
@@ -68,13 +68,13 @@ Kubernetes configuration files are stored in the k8s/ directory.
 
 Apply them with:
 
-kubectl apply -f k8s/
+    kubectl apply -f k8s/
 
 Check if pods & services are running:
 
-kubectl get pods
+    kubectl get pods
 
-kubectl get services
+    kubectl get services
 
 ---
 
@@ -82,16 +82,16 @@ kubectl get services
 
 List pods:
 
-kubectl get pods
+    kubectl get pods
 
 List services:
 
-kubectl get services
+    kubectl get services
 
 Check logs:
 
-kubectl logs <pod-name>
+    kubectl logs <pod-name>
 
 Describe resource:
 
-kubectl describe pod <pod-name>
+    kubectl describe pod <pod-name>
