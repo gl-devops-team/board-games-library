@@ -1,5 +1,5 @@
-# Use official Node.js image as base
-FROM node:20
+# Use official Node.js alpine image as base
+FROM node:20-alpine AS builder
 
 # Set working directory inside the container
 WORKDIR /app/frontend
@@ -10,8 +10,8 @@ COPY ../../app/frontend/package*.json ./
 # Copy the rest of the frontend source code
 COPY ../../app/frontend/ .
 
-# Install dependencies including 'serve' globally
-RUN npm install && npm install -g serve
+# Install dependencies
+RUN npm install
 
 # Build the React app for production
 RUN npm run build
@@ -26,4 +26,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD node -e "require('http').get('http://localhost:3000', (r) => process.exit(r.statusCode < 400 ? 0 : 1)).on('error', () => process.exit(1))"
 
 # Start the app using 'serve' to serve static files from the build folder
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["nginx", "-g", "daemon off;"]
