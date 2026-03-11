@@ -14,8 +14,8 @@ Before starting, make sure you have installed and configured:
 
 - **Docker**
 - **kubectl**
-- [**login to ghcr via kubectl**](#Login-to-GitHub-Container-Registry-(GHCR)-via-kubectl)
-- [**create secret for db**](#Create-secret-for-db-(local))
+- [**Login to ghcr via kubectl**](#Login-to-GitHub-Container-Registry-(GHCR)-via-kubectl)
+- [**Create secret for db**](#Create-secret-for-db-(local))
 
 ---
 
