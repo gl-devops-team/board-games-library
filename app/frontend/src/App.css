@@ -32,6 +32,8 @@ table {
     width: 100%;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th, td {
@@ -51,6 +53,7 @@ tr:nth-child(even) {
 
 tr:hover {
     background-color: #f1f1f1;
+    transition: background-color 0.2s ease;
 }
 
 .no-data {
@@ -94,4 +97,72 @@ th.desc .up {
 
 th.desc .down {
     color: black;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+button {
+    background-color: #F37037;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d95f2a;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.login-container {
+    width: 400px;
+    max-width: 90%;
+    margin: 50px auto;
+    padding: 40px 50px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #F37037;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+
+}
+
+.login-container button:hover {
+    background-color: #d95f2a;
 }
