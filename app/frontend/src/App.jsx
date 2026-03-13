@@ -1,10 +1,22 @@
 import './App.css'
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
 function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
+  )
+}
+function Home() {
   const [games, setGames] = useState([]);
   const [search, setSearch] = useState("");
   const [sortConfig, setSortConfig] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:8000/api/games/")
@@ -17,19 +29,21 @@ function App() {
   }, []);
 
   // Filter function
-  const filteredGames = games.filter(game =>
-    game.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredGames = useMemo( () =>
+    games.filter(game =>
+      game.name.toLowerCase().includes(search.toLowerCase())
+  ), [games, search]);
 
   // Sorting function
-  const sortedGames = [...filteredGames].sort((firstGame, secondGame) => {
+  const sortedGames = useMemo( () => 
+    [...filteredGames].sort((firstGame, secondGame) => {
     if (!sortConfig) return 0;
 
     const { key, direction } = sortConfig;
     if (firstGame[key] < secondGame[key]) return direction === "asc" ? -1 : 1;
     if (firstGame[key] > secondGame[key]) return direction === "asc" ? 1 : -1;
     return 0;
-  });
+  }), [filteredGames, sortConfig]);
 
   const handleSort = (key) => {
     setSortConfig({
@@ -45,12 +59,16 @@ function App() {
     <div className="container">
       <h1>Lista gier planszowych</h1>
 
-      <input
-        type="text"
-        placeholder="Szukaj gry po nazwie..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div class="table-header">
+        <input
+          type="text"
+          placeholder="Szukaj gry po nazwie..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
+        <button onClick={() => navigate("/login")}> Login </button>
+      </div>
 
       <table>
         <thead>
@@ -80,6 +98,17 @@ function App() {
       </table>
     </div>
   );
+}
+
+function Login() {
+  return (
+    <div className='login-container'>
+      <h1>Logowanie</h1>
+      <input type="text" placeholder='Nazwa użytkownika'></input>
+      <input type="password" placeholder='Hasło'></input>
+      <button>Zaloguj się</button>
+    </div>
+  )
 }
 
 export default App;
