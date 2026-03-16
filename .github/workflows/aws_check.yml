@@ -1,0 +1,30 @@
+name: AWS OIDC Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to build'
+        required: true
+        default: 'develop'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  test-aws:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v6
+      with:
+        role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+        aws-region: eu-central-1
+
+    - name: Test AWS CLI
+      run: |
+        aws sts get-caller-identity
