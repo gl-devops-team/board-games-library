@@ -1,15 +1,15 @@
 locals {
-    name_prefix = "${var.project}-${var.environment}"
-    
-    tfstate_bucket_name = "${local.name_prefix}-tfstate"
-    tfstate_key = "platform/${var.environment}/terraform.tfstate"
+  name_prefix = "${var.project}-${var.environment}"
 
-    github_core_role_name = "github-actions-${local.name_prefix}-${var.component}"
+  tfstate_bucket_name = "${local.name_prefix}-tfstate"
+  tfstate_key         = "platform/${var.environment}/terraform.tfstate"
 
-    common_tags = {
-        Project     = var.project
-        Environment = var.environment
-        Component   = var.component
-        ManagedBy   = "Terraform"
+  github_core_role_name = "github-actions-${local.name_prefix}-${var.component}"
+
+  common_tags = {
+    Project     = var.project
+    Environment = var.environment
+    Component   = var.component
+    ManagedBy   = "Terraform"
   }
 }
