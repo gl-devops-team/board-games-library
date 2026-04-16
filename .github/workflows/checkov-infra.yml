@@ -1,0 +1,30 @@
+name: Infra Security Checks (Checkov)
+
+on:
+  pull_request:
+    paths:
+      - 'infra/**'
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'infra/**'
+
+jobs:
+  checkov:
+    name: Run Checkov Scan
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Install Checkov
+      run: pip install checkov
+
+    - name: Run Checkov on Terraform
+      run: |
+        checkov -d infra/terraform/ --framework terraform --quiet --compact
+
+    - name: Run Checkov on Docker 
+      run: |
+        checkov -d infra/docker/ --framework dockerfile --quiet --compact
