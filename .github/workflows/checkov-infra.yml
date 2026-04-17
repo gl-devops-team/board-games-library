@@ -6,13 +6,13 @@ on:
     paths:
       - 'infra/terraform/**'
       - 'infra/docker/**'
-      - 'infrastructure/k8s/**'
+      - 'infra/k8s/**'
   push:
     branches: [ main, develop ]
     paths:
       - 'infra/terraform/**'
       - 'infra/docker/**'
-      - 'infrastructure/k8s/**'
+      - 'infra/k8s/**'
   workflow_dispatch:
 
 jobs:
