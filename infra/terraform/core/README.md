@@ -38,7 +38,7 @@ This module includes:
 - `outputs.tf` – exposed outputs
 - `policies/tfstate-access.json.tftpl` – least-privilege IAM policy for the GitHub Actions core role
 - `bootstrap/core-bootstrap-policy.json.tftpl` – broader IAM policy applied once to allow Terraform to bootstrap itself
-- `bootstrap/core-trust-policy.json.tftpl` – OIDC trust policy allowing GitHub Actions to assume the core role
+- `bootstrap/core-assume-role-policy.json.tftpl` – assume role policy defining who can assume the core role (GitHub Actions via OIDC)
 - `bootstrap/apply.sh` – one-time script to apply bootstrap policies via AWS CLI
 
 ## Local AWS credentials setup (first time)

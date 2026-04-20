@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Run once with admin AWS credentials to bootstrap the core IAM role.
-# Usage: AWS_PROFILE=<admin-profile> ./bootstrap/apply.sh
+# Usage:
+#   export AWS_PROFILE=boardgames-dev-admin
+#   ./bootstrap/apply.sh
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -21,7 +23,7 @@ aws iam put-role-policy \
   --policy-document file:///tmp/bootstrap-policy.json
 
 echo "Updating trust policy for role: ${CORE_ROLE_NAME}"
-envsubst < "${SCRIPT_DIR}/core-trust-policy.json.tftpl" > /tmp/trust-policy.json
+envsubst < "${SCRIPT_DIR}/core-assume-role-policy.json.tftpl" > /tmp/trust-policy.json
 aws iam update-assume-role-policy \
   --role-name "${CORE_ROLE_NAME}" \
   --policy-document file:///tmp/trust-policy.json
