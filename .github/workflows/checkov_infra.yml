@@ -3,21 +3,34 @@ name: Infra Security Checks (Checkov)
 on:
   pull_request:
     types: [ opened, edited, reopened, synchronize ]
-    paths:
-      - 'infra/terraform/**'
-      - 'infra/docker/**'
-      - 'infra/k8s/**'
   push:
     branches: [ main, develop ]
     paths:
-      - 'infra/terraform/**'
-      - 'infra/docker/**'
-      - 'infra/k8s/**'
+    - 'infra/terraform/**'
+    - 'infra/docker/**'
+    - 'infra/k8s/**'
   workflow_dispatch:
 
+
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      infra: ${{ steps.filter.outputs.infra }}
+    steps:
+    - uses: actions/checkout@v6
+    - uses: dorny/paths-filter@v3
+      id: filter
+      with:
+        filters: |
+          infra:
+            - 'infra/terraform/**'
+            - 'infra/docker/**'
+            - 'infra/k8s/**'
+
   checkov:
-    name: Checkov Infra Scan
+    needs: changes
+    if: needs.changes.outputs.infra == 'true'
     runs-on: ubuntu-latest
 
     steps:
@@ -41,9 +54,22 @@ jobs:
           --framework dockerfile \
           --compact
 
-    # 🔹 Kubernetes manifests (NEW)
+    # 🔹 Kubernetes manifests
     - name: Run Checkov on Kubernetes
       run: |
         checkov -d infra/k8s \
           --framework kubernetes \
           --compact
+
+  checkov-status:
+    needs: checkov
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkov result
+      run: |
+        if [[ "${{ needs.checkov.result }}" == "success" || "${{ needs.checkov.result }}" == "skipped" ]]; then
+          echo "Checkov passed or skipped (no infra changes)"
+        else
+          exit 1
+        fi
