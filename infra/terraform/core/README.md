@@ -109,15 +109,12 @@ but those permissions must exist before Terraform runs for the first time.
 
 The solution is a two-phase setup:
 
-**Phase 1 — Bootstrap (run once, manually, with admin credentials):**
+**Phase 0 — Bootstrap (run once, manually, with admin credentials):**
 
 The `apply.sh` script exists to solve a circular dependency: Terraform needs IAM permissions
 to create the S3 bucket and IAM policy, but those permissions cannot be managed by Terraform
 itself before the backend exists. The script applies them once via AWS CLI using your personal
 admin credentials, after which Terraform takes over and manages everything else.
-
-You only run this script once — when setting up the project on a fresh AWS account.
-After that, the `terraform_core.yml` GitHub Actions workflow handles all further changes.
 
 ```bash
 aws sso login --profile boardgames-dev-admin
@@ -125,10 +122,14 @@ AWS_PROFILE=boardgames-dev-admin ./bootstrap/apply.sh
 ```
 
 This script uses `envsubst` to render the JSON templates and applies them via AWS CLI:
+- creates the `github-actions-boardgames-dev-core` IAM role if it does not exist
+- if the role already exists, updates its assume role policy (idempotent — safe to re-run)
 - attaches `CoreBootstrap` inline policy to the core role (permissions to manage S3 + IAM)
-- updates the trust policy so GitHub Actions can assume the role via OIDC
 
-**Phase 2 — Terraform (runs automatically via GitHub Actions after every push):**
+The script is safe to re-run at any time — role creation is skipped if the role already exists,
+and both `update-assume-role-policy` and `put-role-policy` are idempotent AWS CLI operations.
+
+**Phase 1 — Terraform (runs automatically via GitHub Actions after every push):**
 
 ```bash
 terraform init
