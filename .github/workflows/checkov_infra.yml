@@ -28,7 +28,7 @@ jobs:
             - 'infra/docker/**'
             - 'infra/k8s/**'
 
-  checkov:
+  checkov-run:
     needs: changes
     if: needs.changes.outputs.infra == 'true'
     runs-on: ubuntu-latest
@@ -68,8 +68,10 @@ jobs:
     steps:
     - name: Checkov result
       run: |
-        if [[ "${{ needs.checkov.result }}" == "success" || "${{ needs.checkov.result }}" == "skipped" ]]; then
-          echo "Checkov passed or skipped (no infra changes)"
+        if [[ "${{ needs.checkov.result }}" == "success" ]]; then
+          echo "Checkov passed"
+        elif [[ "${{ needs.checkov.result }}" == "skipped" ]]; then
+          echo "Checkov skipped (no infra changes)"
         else
           exit 1
         fi
