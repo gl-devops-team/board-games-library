@@ -2,7 +2,7 @@ locals {
   name_prefix = "${var.project}-${var.environment}"
 
   tfstate_bucket_name = "${local.name_prefix}-tfstate"
-  tfstate_key         = "platform/${var.environment}/terraform.tfstate"
+  tfstate_key         = "core/${var.environment}/terraform.tfstate"
 
   github_core_role_name = "github-actions-${local.name_prefix}-${var.component}"
 
