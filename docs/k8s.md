@@ -34,9 +34,9 @@ Before starting, make sure you have installed and configured:
 
     Required scopes:
 
-    `read:packages – allows pulling images from GHCR
-    write:packages – required only if pushing images
-    delete:packages – optional`
+    `read:packages – allows pulling images from GHCR`<br>
+    `write:packages – required only if pushing images`<br>
+    `delete:packages – optional`
 
     6. Click Generate token.
     7. Copy the generated token immediately (GitHub will not show it again).
@@ -56,7 +56,7 @@ Before starting, make sure you have installed and configured:
 
 ## Create secret for db (local)
 
-    Backend pod needed secret-db value:
+Backend pod needed secret-db value:
 
     `kubectl create secret generic db-secret --from-literal=DATABASE_URL="postgresql://<USER>:<PASSWORD>@db:5432 <PROJECT_NAME>"`
 
