@@ -1,4 +1,6 @@
-# checkov:skip=CKV_DOCKER_2,CKV_DOCKER_3: skip checkov on k8s branch
+
+# checkov:skip=CKV_DOCKER_3: skip checkov on k8s branch
+# checkov:skip=CKV_DOCKER_2: skip checkov on k8s branch
 
 # Use official Node.js image as base
 FROM node:20
