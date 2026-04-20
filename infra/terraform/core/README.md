@@ -124,12 +124,31 @@ AWS_PROFILE=boardgames-dev-admin ./bootstrap/apply.sh
 This script uses `envsubst` to render the JSON templates and applies them via AWS CLI:
 - creates the `github-actions-boardgames-dev-core` IAM role if it does not exist
 - if the role already exists, updates its assume role policy (idempotent — safe to re-run)
-- attaches `CoreBootstrap` inline policy to the core role (permissions to manage S3 + IAM)
+- attaches `boardgames-dev-core-bootstrap` inline policy to the core role (permissions to manage S3 + IAM)
 
 The script is safe to re-run at any time — role creation is skipped if the role already exists,
 and both `update-assume-role-policy` and `put-role-policy` are idempotent AWS CLI operations.
 
-**Phase 1 — Terraform (runs automatically via GitHub Actions after every push):**
+**Phase 1 — First Terraform run (local only, run once on fresh setup):**
+
+Core uses an S3 backend (`core/dev/terraform.tfstate`), but the bucket does not exist yet
+on a fresh AWS account. Run Terraform locally with the backend disabled to create the bucket first,
+then migrate the state to S3:
+
+```bash
+# create the bucket with local state
+terraform init -backend=false
+AWS_PROFILE=boardgames-dev-admin terraform apply
+
+# migrate local state to S3
+terraform init -migrate-state
+# Terraform will ask: "Do you want to copy existing state to the new backend?" → yes
+```
+
+After migration, `core/dev/terraform.tfstate` exists in S3 and the `platform` module can read
+it via `terraform_remote_state`.
+
+**Phase 2 — Terraform (runs automatically via GitHub Actions after every push):**
 
 ```bash
 terraform init
@@ -139,9 +158,6 @@ terraform apply
 
 The `terraform_core.yml` workflow handles this automatically. The core role assumed by GitHub Actions
 has only the permissions defined in `policies/tfstate-access.json.tftpl` — no admin access.
-
-> **Note:** If the role `github-actions-boardgames-dev-core` already exists in AWS,
-> Phase 1 has already been completed and does not need to be repeated.
 
 ## Usage
 
@@ -171,12 +187,3 @@ Current naming convention:
 Generated state bucket:
 
 - `boardgames-dev-tfstate`
-
-## Future improvements
-
-Potential future enhancements:
-
-- IAM policy for GitHub OIDC role access
-- bucket encryption configuration
-- stricter access controls
-- lifecycle policies for object versions

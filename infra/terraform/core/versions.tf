@@ -7,4 +7,10 @@ terraform {
       version = "~> 6.0"
     }
   }
+
+  backend "s3" {
+    bucket = "boardgames-dev-tfstate"
+    key    = "core/dev/terraform.tfstate"
+    region = "eu-central-1"
+  }
 }
