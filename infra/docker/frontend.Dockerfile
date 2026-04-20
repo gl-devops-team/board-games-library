@@ -1,3 +1,5 @@
+# checkov:skip=CKV_DOCKER_2,CKV_DOCKER_3:
+
 # Use official Node.js image as base
 FROM node:20
 

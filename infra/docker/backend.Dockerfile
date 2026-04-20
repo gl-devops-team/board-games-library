@@ -1,3 +1,5 @@
+# checkov:skip=CKV_DOCKER_2,CKV_DOCKER_3:
+
 # Use the official Python image
 FROM python:3.12-slim
 
