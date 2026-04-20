@@ -68,9 +68,9 @@ jobs:
     steps:
     - name: Checkov result
       run: |
-        if [[ "${{ needs.checkov.result }}" == "success" ]]; then
+        if [[ "${{ needs.checkov-run.result }}" == "success" ]]; then
           echo "Checkov passed"
-        elif [[ "${{ needs.checkov.result }}" == "skipped" ]]; then
+        elif [[ "${{ needs.checkov-run.result }}" == "skipped" ]]; then
           echo "Checkov skipped (no infra changes)"
         else
           exit 1
