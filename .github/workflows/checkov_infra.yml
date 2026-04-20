@@ -62,7 +62,7 @@ jobs:
           --compact
 
   checkov-status:
-    needs: checkov
+    needs: checkov-run
     if: always()
     runs-on: ubuntu-latest
     steps:
