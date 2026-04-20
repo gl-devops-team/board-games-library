@@ -14,8 +14,15 @@ COPY app/backend/ .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+# Run as non-root user
+RUN useradd --no-create-home appuser
+USER appuser
+
 # Expose the port the app will run on
 EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD python -c "import socket; s = socket.socket(); s.connect(('localhost', 8000)); s.close()" || exit 1
 
 # Default command to run the backend (Gunicorn)
 CMD ["gunicorn", "boardgames.wsgi:application", "--bind", "0.0.0.0:8000"]
