@@ -45,6 +45,8 @@ pnpm-debug.log*
 .terraformrc
 terraform.rc
 *.tfstate
+*.tfplan
+tfplan.binary
 *.tfstate.*
 crash.log
 crash.*.log
