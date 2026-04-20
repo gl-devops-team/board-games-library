@@ -1,0 +1,56 @@
+name: Terraform Platform
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Apply terraform changes (default: false)"
+        required: true
+        default: "false"
+        type: choice
+        options:
+        - "false"
+        - "true"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform-platform:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: infra/terraform/platform
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v4
+      with:
+        terraform_version: 1.14.6
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v6
+      with:
+        role-to-assume: ${{ vars.AWS_PLATFORM_ROLE_ARN }}
+        aws-region: eu-central-1
+
+    - name: Terraform Format Check
+      run: terraform fmt -check
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Terraform Plan
+      run: terraform plan -out=tfplan.binary
+
+    - name: Terraform Apply
+      if: ${{ github.event.inputs.apply == 'true' }}
+      run: terraform apply -auto-approve tfplan.binary

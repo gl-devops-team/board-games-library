@@ -1,0 +1,34 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ListStateBucket",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": "${bucket_arn}",
+      "Condition": {
+        "StringEquals": {
+          "s3:prefix": ["${tfstate_key}", "${tfstate_key}.tflock"]
+        }
+      }
+    },
+    {
+      "Sid": "ReadWriteStateFile",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject"],
+      "Resource": "${bucket_arn}/${tfstate_key}"
+    },
+    {
+      "Sid": "ReadWriteDeleteLockFile",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
+      "Resource": "${bucket_arn}/${tfstate_key}.tflock"
+    },
+    {
+      "Sid": "ReadCoreStateFile",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject"],
+      "Resource": "${bucket_arn}/core/${environment}/terraform.tfstate"
+    }
+  ]
+}
