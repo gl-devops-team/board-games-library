@@ -1,0 +1,62 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadCoreState",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject"],
+      "Resource": "arn:aws:s3:::${bucket_name}/core/${environment}/terraform.tfstate"
+    },
+    {
+      "Sid": "ManagePlatformState",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::${bucket_name}/platform/${environment}/terraform.tfstate",
+        "arn:aws:s3:::${bucket_name}/platform/${environment}/terraform.tfstate.tflock"
+      ]
+    },
+    {
+      "Sid": "ListStateBucket",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": "arn:aws:s3:::${bucket_name}"
+    },
+    {
+      "Sid": "ReadPlatformRole",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetRole",
+        "iam:ListAttachedRolePolicies"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:role/${platform_role_name}"
+    },
+    {
+      "Sid": "ManageTfstatePolicy",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreatePolicy",
+        "iam:GetPolicy",
+        "iam:GetPolicyVersion",
+        "iam:ListPolicyVersions",
+        "iam:CreatePolicyVersion",
+        "iam:DeletePolicyVersion",
+        "iam:TagPolicy"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:policy/${tfstate_policy_name}"
+    },
+    {
+      "Sid": "AttachPolicyToRole",
+      "Effect": "Allow",
+      "Action": [
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:role/${platform_role_name}"
+    }
+  ]
+}
