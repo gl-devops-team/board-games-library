@@ -2,6 +2,12 @@ resource "aws_vpc" "main" {
   cidr_block           = local.vpc_cidr
   enable_dns_hostnames = true
   enable_dns_support   = true
+
+  #checkov:skip=CKV2_AWS_11: VPC flow logs require a dedicated CloudWatch log group and IAM role - out of scope for this module
+}
+
+resource "aws_default_security_group" "default" {
+  vpc_id = aws_vpc.main.id
 }
 
 resource "aws_subnet" "public" {
@@ -11,7 +17,7 @@ resource "aws_subnet" "public" {
   cidr_block        = local.public_subnet_cidrs[count.index]
   availability_zone = local.azs[count.index]
 
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = true #checkov:skip=CKV_AWS_130: Public subnets intentionally assign public IPs - required for load balancers and NAT Gateways
 
   tags = {
     Name = "${local.name_prefix}-public-${local.azs[count.index]}"
