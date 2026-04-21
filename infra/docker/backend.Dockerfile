@@ -1,7 +1,3 @@
-
-# checkov:skip=CKV_DOCKER_3: skip checkov on k8s branch
-# checkov:skip=CKV_DOCKER_2: skip checkov on k8s branch
-
 # Use the official Python image
 FROM python:3.12-slim
 
