@@ -14,7 +14,7 @@ definitions only — they have no backend and cannot be run directly.
 
 ```
 environments/dev/
-├── main.tf       - module calls (networking, and future: ecr, eks...)
+├── main.tf       - module calls (networking, ecr, and future: eks...)
 ├── providers.tf  - AWS provider for eu-central-1
 └── versions.tf   - Terraform version constraints + S3 backend configuration
 ```
@@ -27,8 +27,8 @@ State is stored in S3:
 s3://boardgames-dev-tfstate/networking/dev/terraform.tfstate
 ```
 
-As more modules are added, their resources accumulate in the same state file — Terraform
-handles dependency ordering automatically based on output references between modules.
+All module resources accumulate in the same state file — Terraform handles dependency
+ordering automatically based on output references between modules.
 
 ## Prerequisites
 
@@ -63,4 +63,5 @@ The workflow uses the `github-actions-boardgames-dev-platform` role (via OIDC).
 ## Cost note
 
 NAT Gateways (~$32/month each × 2) are the main cost driver in this environment.
+ECR repositories have no base cost — you pay only for storage and data transfer.
 Run `terraform destroy` when the environment is not needed to avoid ongoing charges.
