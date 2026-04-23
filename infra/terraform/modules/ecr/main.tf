@@ -1,6 +1,7 @@
 data "aws_caller_identity" "current" {}
 
 resource "aws_ecr_repository" "this" {
+  #checkov:skip=CKV_AWS_136: AES256 server-side encryption is sufficient for dev — KMS adds cost with no practical benefit here
   for_each = toset(var.image_names)
 
   name                 = "${local.name_prefix}/${each.value}"
