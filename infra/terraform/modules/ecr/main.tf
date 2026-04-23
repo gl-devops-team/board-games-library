@@ -59,32 +59,8 @@ resource "aws_ecr_repository_policy" "this" {
 
   repository = each.value.name
 
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid    = "AllowPlatformRoles"
-        Effect = "Allow"
-        Principal = {
-          AWS = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
-        }
-        Action = [
-          "ecr:GetDownloadUrlForLayer",
-          "ecr:BatchGetImage",
-          "ecr:BatchCheckLayerAvailability",
-          "ecr:PutImage",
-          "ecr:InitiateLayerUpload",
-          "ecr:UploadLayerPart",
-          "ecr:CompleteLayerUpload",
-          "ecr:DescribeImages",
-          "ecr:ListImages"
-        ]
-        Condition = {
-          ArnLike = {
-            "aws:PrincipalArn" = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/${local.name_prefix}-*"
-          }
-        }
-      }
-    ]
+  policy = templatefile("${path.module}/policies/repository-access.json.tftpl", {
+    account_id  = data.aws_caller_identity.current.account_id
+    name_prefix = local.name_prefix
   })
 }

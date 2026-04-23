@@ -1,4 +1,4 @@
-# Terraform ECR Module
+  # Terraform ECR Module
 
 This directory contains the reusable Terraform module for provisioning AWS Elastic
 Container Registry repositories. It is not a root module — it is called from
@@ -17,6 +17,8 @@ with IAM for access control.
 ```
 modules/ecr/
 ├── main.tf       - ECR repositories, lifecycle policies, repository policies
+├── policies/
+│   └── repository-access.json.tftpl - IAM policy scoped to boardgames-dev-* roles
 ├── locals.tf     - name prefix, common tags
 ├── variables.tf  - input variables (aws_region, project, environment, component, image_names, max_image_count)
 ├── outputs.tf    - repository_urls, repository_arns
