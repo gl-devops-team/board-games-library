@@ -19,7 +19,7 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/games/")
+    fetch("http://localhost:30080/api/games/")
       .then(res => res.json())
       .then(data => {
         console.log("DATA:", data);
