@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  namespace: boardgames
+  annotations:
+    checkov.io/skip1: "CKV_K8S_43=Image digest pinning impractical in development"
 spec:
   replicas: 1
   selector:
@@ -12,10 +15,45 @@ spec:
       labels:
         app: frontend
     spec:
+      automountServiceAccountToken: false
       imagePullSecrets:
         - name: ghcr-secret
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10000
+        runAsGroup: 10000
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: frontend
           image: ghcr.io/gl-devops-team/frontend:1.9
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 10000
+            capabilities:
+              drop:
+                - ALL
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
