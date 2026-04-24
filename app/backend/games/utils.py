@@ -33,7 +33,7 @@ def get_games_from_xlsx(file_path: str):
                 "players": row_data.get("Number of players"),
                 "time": row_data.get("Average game time [h:mm]"),
                 "description": row_data.get("Category"),
-                "image_url": row_data.get("Image URL", ""),
+                "image_url": row_data.get("Image_URL", ""),
             }
         )
 

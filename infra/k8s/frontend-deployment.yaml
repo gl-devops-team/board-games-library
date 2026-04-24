@@ -29,7 +29,7 @@ spec:
           image: ghcr.io/gl-devops-team/frontend:1.9
           imagePullPolicy: Always
           ports:
-            - containerPort: 3000
+            - containerPort: 80
           resources:
             requests:
               cpu: "50m"
@@ -48,12 +48,22 @@ spec:
           livenessProbe:
             httpGet:
               path: /
-              port: 3000
+              port: 80
             initialDelaySeconds: 10
             periodSeconds: 20
           readinessProbe:
             httpGet:
               path: /
-              port: 3000
+              port: 80
             initialDelaySeconds: 5
             periodSeconds: 10
+          volumeMounts:
+            - name: nginx-cache
+              mountPath: /var/cache/nginx
+            - name: nginx-run
+              mountPath: /var/run
+      volumes:
+        - name: nginx-cache
+          emptyDir: {}
+        - name: nginx-run
+          emptyDir: {}

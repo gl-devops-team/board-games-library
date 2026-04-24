@@ -1,0 +1,566 @@
+[
+{
+  "model": "games.boardgame",
+  "pk": 1,
+  "fields": {
+    "name": "6 bierze",
+    "min_players": 2,
+    "max_players": 10,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/1OBsuvvNteTAXejvCqlFPA__imagepage/img/etIKwL6X1JBQ7imk2gBmkGAPx6Q=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4894307.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 2,
+  "fields": {
+    "name": "7 cudów świata",
+    "min_players": 2,
+    "max_players": 7,
+    "game_time_minutes": 30,
+    "category": "Strategic",
+    "image_url": "https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__imagepage/img/WKlTys0Dc3F6x9r05Fwyvs82tz4=/fit-in/900x600/filters:no_upscale():strip_icc()/pic7149798.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 3,
+  "fields": {
+    "name": "Atari Go",
+    "min_players": 2,
+    "max_players": 2,
+    "game_time_minutes": 60,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/6qAiZwWxSSKP2kFcA80cZg__imagepage@2x/img/7hE78-RL5orYLxzEQ7S_LjQVOVc=/fit-in/1800x1200/filters:strip_icc()/pic1728832.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 4,
+  "fields": {
+    "name": "Azul",
+    "min_players": 2,
+    "max_players": 4,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/aPSHJO0d0XOpQR5X-wJonw__imagepage/img/q4uWd2nXGeEkKDR8Cc3NhXG9PEU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic6973671.png"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 5,
+  "fields": {
+    "name": "Backgammon",
+    "min_players": 2,
+    "max_players": 2,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/QQCaOWVN1uCcjCq-2dbXbw__imagepage@2x/img/i1nBTcobOQOQgzD6KF6OMUfoyfA=/fit-in/1800x1200/filters:strip_icc()/pic342451.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 6,
+  "fields": {
+    "name": "Brzdęk",
+    "min_players": 2,
+    "max_players": 4,
+    "game_time_minutes": 60,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/DPjV1iI0ygo5Bl3XLNRiIg__imagepage/img/R9z8w4GndbY-r3fG_LK1LvBvLc0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4449526.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 7,
+  "fields": {
+    "name": "Carcassonne Big Box",
+    "min_players": 2,
+    "max_players": 6,
+    "game_time_minutes": 45,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/gYRdnw7GeElaIsO84UsARQ__imagepage/img/Zb-JLG_-06-8bFwgAb_p5x8chSc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1632563.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 8,
+  "fields": {
+    "name": "Cash & Guns",
+    "min_players": 2,
+    "max_players": 8,
+    "game_time_minutes": 30,
+    "category": "Party",
+    "image_url": "https://cf.geekdo-images.com/_UpTZr1itCcHdnnbuTUnQQ__imagepage/img/HuPHo6QOFg8AvvzT-LcLu1Th3C0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic87523.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 9,
+  "fields": {
+    "name": "Colt Express",
+    "min_players": 2,
+    "max_players": 6,
+    "game_time_minutes": 40,
+    "category": "Strategic",
+    "image_url": "https://cf.geekdo-images.com/2HKX0QANk_DY7CIVK5O5fQ__imagepage/img/zxnigooCnQod4ILYJ13_X9xj0Cg=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2869710.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 10,
+  "fields": {
+    "name": "Cyklady",
+    "min_players": 2,
+    "max_players": 5,
+    "game_time_minutes": 90,
+    "category": "Strategic",
+    "image_url": "https://cf.geekdo-images.com/6QbaJOS8acWkJ6gSYI0KaQ__imagepage/img/nsZYZovWCEFL3MsohH7GWycMmno=/fit-in/900x600/filters:no_upscale():strip_icc()/pic584779.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 11,
+  "fields": {
+    "name": "Cytadela",
+    "min_players": 2,
+    "max_players": 8,
+    "game_time_minutes": 60,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/shXqRK7Sfsp-jCLwoN3kqw__imagepage/img/nP2cYlSYKQmTrS9C3Pnh3rQSpZU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic636868.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 12,
+  "fields": {
+    "name": "Czarne historie",
+    "min_players": 2,
+    "max_players": 15,
+    "game_time_minutes": 20,
+    "category": "Party",
+    "image_url": "https://cf.geekdo-images.com/NPnm8Pz2-uvMsbeptOX0fw__imagepage/img/_b94gdpszYq8uoNhvt7r3FQIvoQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic208686.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 13,
+  "fields": {
+    "name": "Decrypto",
+    "min_players": 3,
+    "max_players": 99,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/4_cqWxGHetzYR1YsDM9uTA__imagepage/img/bZw2yFTKQX5NqJY0dCV6fC4rjUw=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4072749.png"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 14,
+  "fields": {
+    "name": "Diuna Imperium",
+    "min_players": 1,
+    "max_players": 4,
+    "game_time_minutes": 120,
+    "category": "Strategic",
+    "image_url": "https://cf.geekdo-images.com/PhjygpWSo-0labGrPBMyyg__imagepage/img/BjM3LyahJ4IQ2ov5MkzkHatbmUc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5666597.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 15,
+  "fields": {
+    "name": "Dixit Odyssey",
+    "min_players": 3,
+    "max_players": 12,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/J0PlHArkZDJ57H-brXW2Fw__imagepage@2x/img/J1XsxEH7Ao9Cr9MwRwiJQTgn8vM=/fit-in/1800x1200/filters:strip_icc()/pic6738336.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 16,
+  "fields": {
+    "name": "Dobble",
+    "min_players": 2,
+    "max_players": 8,
+    "game_time_minutes": 15,
+    "category": "Arcade",
+    "image_url": "https://cf.geekdo-images.com/hqDT4HbEb2eNCyMOeiGj-g__imagepage/img/WlZFYOxtPUvTBBAW4h9AkjaTWKc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic6477003.png"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 17,
+  "fields": {
+    "name": "Domek",
+    "min_players": 2,
+    "max_players": 4,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/CtVH__gM0TBISzOzV3OeFQ__imagepage/img/1ljJ1RdR3PwdTHJotVESmAzYKZw=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3176771.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 18,
+  "fields": {
+    "name": "Eksplodujace kotki",
+    "min_players": 2,
+    "max_players": 5,
+    "game_time_minutes": 15,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/N8bL53-pRU7zaXDTrEaYrw__imagepage/img/qdivOjtkEd8Jma35bdI3mOwaoZg=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2691976.png"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 19,
+  "fields": {
+    "name": "Fasolki",
+    "min_players": 2,
+    "max_players": 7,
+    "game_time_minutes": 45,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/8SADtu_4zBH_UJrCo935Iw__imagepage/img/KkvO2G421KttUm3cyuvaV5slNOo=/fit-in/900x600/filters:no_upscale():strip_icc()/pic6348964.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 20,
+  "fields": {
+    "name": "Fuse",
+    "min_players": 1,
+    "max_players": 5,
+    "game_time_minutes": 10,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/q6V72bfqeoKi3bfThY3XfQ__imagepage@2x/img/hHZOE2MzYhr-ZCzo_oezjpqvFcU=/fit-in/1800x1200/filters:strip_icc()/pic5172335.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 21,
+  "fields": {
+    "name": "Gra o Tron 2ed",
+    "min_players": 3,
+    "max_players": 6,
+    "game_time_minutes": 180,
+    "category": "Strategic",
+    "image_url": "https://cf.geekdo-images.com/M_7UvwZvuxBVjxdadsa5AA__imagepage/img/AuKDe6Q4lyGdm6rTS2JUEXvhTbQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1077906.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 22,
+  "fields": {
+    "name": "iKnow",
+    "min_players": 2,
+    "max_players": 6,
+    "game_time_minutes": 60,
+    "category": "Educational",
+    "image_url": "https://cf.geekdo-images.com/GDCDK9ZaD4AfTYf8FWoVaA__imagepage/img/NmVzT2QhfssEMSP6_2GK6r4D2Us=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5885668.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 23,
+  "fields": {
+    "name": "Jungle Speed",
+    "min_players": 2,
+    "max_players": 8,
+    "game_time_minutes": 10,
+    "category": "Arcade",
+    "image_url": "https://cf.geekdo-images.com/pb553nZgH3akaF24MzT7nA__imagepage@2x/img/qHN8rvVqrR0Lj0C4PcKT3OVECPE=/fit-in/1800x1200/filters:strip_icc()/pic4659199.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 24,
+  "fields": {
+    "name": "Karty dżentelmenów",
+    "min_players": 3,
+    "max_players": 15,
+    "game_time_minutes": 45,
+    "category": "Party",
+    "image_url": "https://cf.geekdo-images.com/WvVBEoqIyiXg6HRG6l93cA__imagepage/img/YBFVbjn_Y35DoscxJjmJR6_C7AA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2807982.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 25,
+  "fields": {
+    "name": "Kolejka",
+    "min_players": 2,
+    "max_players": 5,
+    "game_time_minutes": 60,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/e9sX70pm3-beOOEQ8ktK5g__imagepage@2x/img/Udw4gaXD0M7qocnxv9X7ktdXxOs=/fit-in/1800x1200/filters:strip_icc()/pic928373.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 26,
+  "fields": {
+    "name": "Mafia",
+    "min_players": 7,
+    "max_players": 22,
+    "game_time_minutes": 30,
+    "category": "Party",
+    "image_url": "https://cf.geekdo-images.com/ZVQgFnWOS1Qb2-7t_u8REw__imagepage/img/7aufSaQLgL2zKWoreXCqLVxGepw=/fit-in/900x600/filters:no_upscale():strip_icc()/pic261358.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 27,
+  "fields": {
+    "name": "Mamy Szpiega 2",
+    "min_players": 3,
+    "max_players": 12,
+    "game_time_minutes": 15,
+    "category": "Party",
+    "image_url": "https://cf.geekdo-images.com/4nE3EGcIVJnItZOdZ2NrxA__imagepage@2x/img/Jf5sDJKiClqZhYLa1EiM4FTagh4=/fit-in/1800x1200/filters:strip_icc()/pic4141398.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 28,
+  "fields": {
+    "name": "Megawojownicy",
+    "min_players": 2,
+    "max_players": 8,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/CVh9A7HfIjyBWel2oACmTw__imagepage/img/7sEjjupJ06DBbcPg68R6ayHeZJ0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2409973.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 29,
+  "fields": {
+    "name": "Na skrzydłach",
+    "min_players": 1,
+    "max_players": 5,
+    "game_time_minutes": 60,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__imagepage/img/uIjeoKgHMcRtzRSR4MoUYl3nXxs=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4458123.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 30,
+  "fields": {
+    "name": "Osadnicy z Catanu",
+    "min_players": 3,
+    "max_players": 4,
+    "game_time_minutes": 90,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/0XODRpReiZBFUffEcqT5-Q__imagepage/img/enC7UTvCAnb6j1Uazvh0OBQjvxw=/fit-in/900x600/filters:no_upscale():strip_icc()/pic9156909.png"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 31,
+  "fields": {
+    "name": "Pędzące Żółwie",
+    "min_players": 2,
+    "max_players": 5,
+    "game_time_minutes": 20,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/tavWylsUT7gwuLN39fpp_Q__imagepage/img/OfMiH3Bc8sguih-6Us7hmVi4R7E=/fit-in/900x600/filters:no_upscale():strip_icc()/pic8623849.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 32,
+  "fields": {
+    "name": "Przebiegłe wielbłądy",
+    "min_players": 2,
+    "max_players": 8,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/jVr1bGBQpshqVPcwvZ7CPg__imagepage/img/izUYPKEp6La-pRe5SgA1TKhPSXM=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1918028.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 33,
+  "fields": {
+    "name": "Root",
+    "min_players": 2,
+    "max_players": 4,
+    "game_time_minutes": 90,
+    "category": "Strategic",
+    "image_url": "https://cf.geekdo-images.com/JUAUWaVUzeBgzirhZNmHHw__imagepage@2x/img/Ovil61ILKIUL8keuBs7YWnYcsRI=/fit-in/1800x1200/filters:strip_icc()/pic4254509.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 34,
+  "fields": {
+    "name": "Sabotażysta",
+    "min_players": 3,
+    "max_players": 10,
+    "game_time_minutes": 30,
+    "category": "Party",
+    "image_url": "https://cf.geekdo-images.com/0vJwP6NGa7GHPZKC3gplUw__imagepage/img/HTsjdbMkBnY50FfT6GOECkceD0Y=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3989824.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 35,
+  "fields": {
+    "name": "Scrabble",
+    "min_players": 2,
+    "max_players": 4,
+    "game_time_minutes": 90,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/mVmmntn2oQd0PfFrWBvwIQ__imagepage/img/jMu8xW0e_AZpYaBmZN0IRm04jKQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic404651.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 36,
+  "fields": {
+    "name": "Scythe",
+    "min_players": 1,
+    "max_players": 5,
+    "game_time_minutes": 120,
+    "category": "Strategic",
+    "image_url": "https://cf.geekdo-images.com/7k_nOxpO9OGIjhLq2BUZdA__imagepage@2x/img/DjzadozjcJUwXDwyQ-o7mQIqYfw=/fit-in/1800x1200/filters:strip_icc()/pic3163924.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 37,
+  "fields": {
+    "name": "Set",
+    "min_players": 2,
+    "max_players": 99,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/uEtWO_Ag8OxbG6NkSZbH6A__imagepage/img/_8NOucACj_E1Ot--bvJ8rZDZQjU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic7627182.png"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 38,
+  "fields": {
+    "name": "Spirit Island",
+    "min_players": 2,
+    "max_players": 4,
+    "game_time_minutes": 120,
+    "category": "Strategic",
+    "image_url": "https://cf.geekdo-images.com/kjCm4ZvPjIZxS-mYgSPy1g__imagepage/img/py7KzNjXVOuVesFZB7LwqCbvALY=/fit-in/900x600/filters:no_upscale():strip_icc()/pic7013651.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 39,
+  "fields": {
+    "name": "Splendor",
+    "min_players": 2,
+    "max_players": 4,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/vNFe4JkhKAERzi4T0Ntwpw__imagepage@2x/img/o5_euaQYSaPxlu9L4i11AwVU4aQ=/fit-in/1800x1200/filters:strip_icc()/pic8234167.png"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 40,
+  "fields": {
+    "name": "Szachy",
+    "min_players": 2,
+    "max_players": 2,
+    "game_time_minutes": 30,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/0_RWFMNapgr5yCrdhvGi_Q__imagepage@2x/img/-NpRApu9a85q11TI3a6sDtSlEwE=/fit-in/1800x1200/filters:strip_icc()/pic8785991.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 41,
+  "fields": {
+    "name": "Szeryf z Nottingham",
+    "min_players": 3,
+    "max_players": 5,
+    "game_time_minutes": 60,
+    "category": "Party",
+    "image_url": "https://cf.geekdo-images.com/BBgLFKUzr6tcKtlIM2JSFw__imagepage@2x/img/OTVU62SRQpDDPqHtWPayAkCT-Z8=/fit-in/1800x1200/filters:strip_icc()/pic2075830.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 42,
+  "fields": {
+    "name": "Tajniacy",
+    "min_players": 2,
+    "max_players": 99,
+    "game_time_minutes": 15,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/_d4WMLK3MCY-fk0-G4CVzw__imagepage@2x/img/5xYRBktTJRdlX3Qgu0TvnAz_lzA=/fit-in/1800x1200/filters:strip_icc()/pic8980840.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 43,
+  "fields": {
+    "name": "Time's up party",
+    "min_players": 4,
+    "max_players": 12,
+    "game_time_minutes": 30,
+    "category": "Party",
+    "image_url": "https://cf.geekdo-images.com/vGuFv3zZz486JWRBHpnwTw__imagepage/img/d7M5FVqzOG5ogFLNSfsltpza-14=/fit-in/900x600/filters:no_upscale():strip_icc()/pic393663.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 44,
+  "fields": {
+    "name": "Timeline Polska",
+    "min_players": 2,
+    "max_players": 99,
+    "game_time_minutes": 15,
+    "category": "Educational",
+    "image_url": "https://cf.geekdo-images.com/A1qPcXZxP8ySsdOJeBN7iQ__imagepage/img/KUMRJHxSCHNYvnx7X_6Uaj8CGD8=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3180463.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 45,
+  "fields": {
+    "name": "Timeline: Wynalazki",
+    "min_players": 2,
+    "max_players": 99,
+    "game_time_minutes": 15,
+    "category": "Educational",
+    "image_url": "https://cf.geekdo-images.com/lm4VudewCcllbE9GzBOhww__imagepage/img/pTSA7i_a8u3lBqfGPF7g7kwXej0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic7108036.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 46,
+  "fields": {
+    "name": "Wsiąść do Pociągu: Europa",
+    "min_players": 2,
+    "max_players": 5,
+    "game_time_minutes": 60,
+    "category": "Family",
+    "image_url": "https://cf.geekdo-images.com/0K1AOciqlMVUWFPLTJSiww__imagepage/img/pC5hC440R46jn4EpfdYV5rL4VOc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic66668.jpg"
+  }
+},
+{
+  "model": "games.boardgame",
+  "pk": 47,
+  "fields": {
+    "name": "Karty",
+    "min_players": 1,
+    "max_players": 99,
+    "game_time_minutes": 0,
+    "category": "Family",
+    "image_url": "Family"
+  }
+}
+]

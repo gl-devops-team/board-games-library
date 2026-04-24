@@ -19,7 +19,6 @@ spec:
     spec:
       automountServiceAccountToken: false
       securityContext:
-        runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
       containers:
@@ -52,11 +51,10 @@ spec:
               cpu: "500m"
               memory: "512Mi"
           securityContext:
-            allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             capabilities:
               drop:
-                - ALL
+                - NET_RAW
           livenessProbe:
             exec:
               command:

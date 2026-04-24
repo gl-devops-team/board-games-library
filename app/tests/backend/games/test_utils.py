@@ -25,7 +25,7 @@ def test_get_games_from_xlsx_returns_expected_data(mock_load_workbook):
         _cell("Number of players"),
         _cell("Average game time [h:mm]"),
         _cell("Category"),
-        _cell("Image URL"),
+        _cell("Image_URL"),
     ]
 
     # Define rows of data
