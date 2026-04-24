@@ -121,6 +121,10 @@ def main():
     pr_body = sys.argv[3]
     head_sha = sys.argv[4]
 
+    if branch_name == "develop":
+        print("Branch is 'develop', skipping commit checks.")
+        sys.exit(0)
+
     print(f"Branch name: {branch_name}")
     print(f"PR title: {pr_title}")
     print(f"Head commit SHA: {head_sha}")
