@@ -45,21 +45,24 @@ jobs:
       run: |
         checkov -d infra/terraform \
           --framework terraform \
-          --compact
+          --compact \
+          --quiet
 
     # 🔹 Dockerfiles (build security)
     - name: Run Checkov on Dockerfiles
       run: |
         checkov -d infra/docker \
           --framework dockerfile \
-          --compact
+          --compact \
+          --quiet
 
     # 🔹 Kubernetes manifests
     - name: Run Checkov on Kubernetes
       run: |
         checkov -d infra/k8s \
           --framework kubernetes \
-          --compact
+          --compact \
+          --quiet
 
   checkov-status:
     needs: checkov-run
