@@ -18,8 +18,8 @@
       "Resource": [
         "arn:aws:s3:::${bucket_name}/platform/${environment}/terraform.tfstate",
         "arn:aws:s3:::${bucket_name}/platform/${environment}/terraform.tfstate.tflock",
-        "arn:aws:s3:::${bucket_name}/networking/${environment}/terraform.tfstate",
-        "arn:aws:s3:::${bucket_name}/networking/${environment}/terraform.tfstate.tflock"
+        "arn:aws:s3:::${bucket_name}/env/${environment}/terraform.tfstate",
+        "arn:aws:s3:::${bucket_name}/env/${environment}/terraform.tfstate.tflock"
       ]
     },
     {
@@ -103,6 +103,34 @@
         "iam:DetachRolePolicy"
       ],
       "Resource": "arn:aws:iam::${account_id}:role/${platform_role_name}"
+    },
+    {
+      "Sid": "ManageEcrRepositories",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:CreateRepository",
+        "ecr:DeleteRepository",
+        "ecr:DescribeRepositories",
+        "ecr:ListTagsForResource",
+        "ecr:TagResource",
+        "ecr:UntagResource",
+        "ecr:PutLifecyclePolicy",
+        "ecr:GetLifecyclePolicy",
+        "ecr:DeleteLifecyclePolicy",
+        "ecr:SetRepositoryPolicy",
+        "ecr:GetRepositoryPolicy",
+        "ecr:DeleteRepositoryPolicy",
+        "ecr:PutImageScanningConfiguration"
+      ],
+      "Resource": "arn:aws:ecr:eu-central-1:${account_id}:repository/boardgames-${environment}/*"
+    },
+    {
+      "Sid": "DescribeEcrAuthorization",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetAuthorizationToken"
+      ],
+      "Resource": "*"
     }
   ]
 }
