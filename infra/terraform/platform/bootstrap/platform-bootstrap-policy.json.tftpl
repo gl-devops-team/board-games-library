@@ -131,6 +131,115 @@
         "ecr:GetAuthorizationToken"
       ],
       "Resource": "*"
+    },
+    {
+      "Sid": "ManageEksCluster",
+      "Effect": "Allow",
+      "Action": [
+        "eks:CreateCluster",
+        "eks:DeleteCluster",
+        "eks:DescribeCluster",
+        "eks:UpdateClusterConfig",
+        "eks:UpdateClusterVersion",
+        "eks:TagResource",
+        "eks:UntagResource",
+        "eks:ListTagsForResource",
+        "eks:CreateNodegroup",
+        "eks:DeleteNodegroup",
+        "eks:DescribeNodegroup",
+        "eks:UpdateNodegroupConfig",
+        "eks:UpdateNodegroupVersion",
+        "eks:CreateAccessEntry",
+        "eks:DeleteAccessEntry",
+        "eks:DescribeAccessEntry",
+        "eks:AssociateAccessPolicy",
+        "eks:DisassociateAccessPolicy",
+        "eks:ListAssociatedAccessPolicies"
+      ],
+      "Resource": [
+        "arn:aws:eks:eu-central-1:${account_id}:cluster/boardgames-${environment}-eks",
+        "arn:aws:eks:eu-central-1:${account_id}:nodegroup/boardgames-${environment}-eks/boardgames-${environment}-eks-nodes/*",
+        "arn:aws:eks:eu-central-1:${account_id}:access-entry/boardgames-${environment}-eks/*"
+      ]
+    },
+    {
+      "Sid": "ManageEksIamRoles",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:GetRole",
+        "iam:TagRole",
+        "iam:UntagRole",
+        "iam:ListRolePolicies",
+        "iam:ListAttachedRolePolicies",
+        "iam:ListInstanceProfilesForRole",
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy",
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "arn:aws:iam::${account_id}:role/boardgames-${environment}-eks-cluster-role",
+        "arn:aws:iam::${account_id}:role/boardgames-${environment}-eks-node-role",
+        "arn:aws:iam::${account_id}:role/boardgames-${environment}-irsa-role"
+      ]
+    },
+    {
+      "Sid": "ManageEksIrsaPolicy",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreatePolicy",
+        "iam:DeletePolicy",
+        "iam:GetPolicy",
+        "iam:GetPolicyVersion",
+        "iam:ListPolicyVersions",
+        "iam:CreatePolicyVersion",
+        "iam:DeletePolicyVersion",
+        "iam:TagPolicy"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:policy/boardgames-${environment}-irsa-permissions"
+    },
+    {
+      "Sid": "ManageOidcProvider",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateOpenIDConnectProvider",
+        "iam:DeleteOpenIDConnectProvider",
+        "iam:GetOpenIDConnectProvider",
+        "iam:TagOpenIDConnectProvider",
+        "iam:AddClientIDToOpenIDConnectProvider"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/*"
+    },
+    {
+      "Sid": "ManageEksSecurityGroups",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateSecurityGroup",
+        "ec2:DeleteSecurityGroup",
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeSecurityGroupRules",
+        "ec2:AuthorizeSecurityGroupIngress",
+        "ec2:RevokeSecurityGroupIngress",
+        "ec2:AuthorizeSecurityGroupEgress",
+        "ec2:RevokeSecurityGroupEgress",
+        "ec2:CreateTags",
+        "ec2:DeleteTags"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "EksClusterLogging",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:DeleteLogGroup",
+        "logs:DescribeLogGroups",
+        "logs:PutRetentionPolicy",
+        "logs:TagResource",
+        "logs:ListTagsForResource"
+      ],
+      "Resource": "arn:aws:logs:eu-central-1:${account_id}:log-group:/aws/eks/boardgames-${environment}-eks/*"
     }
   ]
 }
