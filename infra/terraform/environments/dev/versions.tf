@@ -10,7 +10,7 @@ terraform {
 
   backend "s3" {
     bucket = "boardgames-dev-tfstate"
-    key    = "networking/dev/terraform.tfstate"
+    key    = "env/dev/terraform.tfstate"
     region = "eu-central-1"
   }
 }

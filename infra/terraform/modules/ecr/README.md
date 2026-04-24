@@ -41,7 +41,7 @@ Total: **6 resources**
 Two rules per repository:
 
 1. **Untagged images** — expired after 1 day (build artifacts without a release tag)
-2. **Tagged images** — keep the last `max_image_count` (default 10) images prefixed with `v`
+2. **Tagged images** — keep the last `max_image_count` (default 10) images regardless of tag
 
 ## Repository policy
 

@@ -24,7 +24,7 @@ environments/dev/
 State is stored in S3:
 
 ```
-s3://boardgames-dev-tfstate/networking/dev/terraform.tfstate
+s3://boardgames-dev-tfstate/env/dev/terraform.tfstate
 ```
 
 All module resources accumulate in the same state file — Terraform handles dependency

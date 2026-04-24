@@ -18,8 +18,8 @@
       "Resource": [
         "arn:aws:s3:::${bucket_name}/platform/${environment}/terraform.tfstate",
         "arn:aws:s3:::${bucket_name}/platform/${environment}/terraform.tfstate.tflock",
-        "arn:aws:s3:::${bucket_name}/networking/${environment}/terraform.tfstate",
-        "arn:aws:s3:::${bucket_name}/networking/${environment}/terraform.tfstate.tflock"
+        "arn:aws:s3:::${bucket_name}/env/${environment}/terraform.tfstate",
+        "arn:aws:s3:::${bucket_name}/env/${environment}/terraform.tfstate.tflock"
       ]
     },
     {
@@ -128,8 +128,7 @@
       "Sid": "DescribeEcrAuthorization",
       "Effect": "Allow",
       "Action": [
-        "ecr:GetAuthorizationToken",
-        "ecr:DescribeRepositories"
+        "ecr:GetAuthorizationToken"
       ],
       "Resource": "*"
     }

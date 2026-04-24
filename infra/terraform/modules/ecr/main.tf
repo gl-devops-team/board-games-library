@@ -1,6 +1,6 @@
 data "aws_caller_identity" "current" {}
 
-resource "aws_ecr_repository" "this" {
+resource "aws_ecr_repository" "app" {
   #checkov:skip=CKV_AWS_136: AES256 server-side encryption is sufficient for dev — KMS adds cost with no practical benefit here
   for_each = toset(var.image_names)
 
@@ -21,8 +21,8 @@ resource "aws_ecr_repository" "this" {
   }
 }
 
-resource "aws_ecr_lifecycle_policy" "this" {
-  for_each = aws_ecr_repository.this
+resource "aws_ecr_lifecycle_policy" "app" {
+  for_each = aws_ecr_repository.app
 
   repository = each.value.name
 
@@ -41,10 +41,9 @@ resource "aws_ecr_lifecycle_policy" "this" {
       },
       {
         rulePriority = 2
-        description  = "Keep last ${var.max_image_count} tagged images"
+        description  = "Keep last ${var.max_image_count} images"
         selection = {
-          tagStatus   = "tagged"
-          tagPrefixList = ["v"]
+          tagStatus   = "any"
           countType   = "imageCountMoreThan"
           countNumber = var.max_image_count
         }
@@ -54,8 +53,8 @@ resource "aws_ecr_lifecycle_policy" "this" {
   })
 }
 
-resource "aws_ecr_repository_policy" "this" {
-  for_each = aws_ecr_repository.this
+resource "aws_ecr_repository_policy" "app" {
+  for_each = aws_ecr_repository.app
 
   repository = each.value.name
 
