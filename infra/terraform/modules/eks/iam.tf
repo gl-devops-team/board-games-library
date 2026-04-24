@@ -92,3 +92,20 @@ resource "aws_iam_role_policy_attachment" "irsa" {
   role       = aws_iam_role.irsa.name
   policy_arn = aws_iam_policy.irsa.arn
 }
+
+# --- CloudWatch Agent IRSA Role ---
+
+resource "aws_iam_role" "cloudwatch_agent" {
+  name = "${local.name_prefix}-cloudwatch-agent-role"
+  assume_role_policy = templatefile("${path.module}/policies/cloudwatch-agent-trust.json.tftpl", {
+    oidc_provider_arn = aws_iam_openid_connect_provider.eks.arn
+    oidc_issuer       = replace(aws_eks_cluster.main.identity[0].oidc[0].issuer, "https://", "")
+  })
+
+  tags = { Name = "${local.name_prefix}-cloudwatch-agent-role" }
+}
+
+resource "aws_iam_role_policy_attachment" "cloudwatch_agent" {
+  role       = aws_iam_role.cloudwatch_agent.name
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+}

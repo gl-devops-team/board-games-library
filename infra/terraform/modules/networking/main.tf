@@ -116,3 +116,41 @@ resource "aws_route_table_association" "private" {
   subnet_id      = aws_subnet.private[count.index].id
   route_table_id = aws_route_table.private[count.index].id
 }
+
+# --- VPC Flow Logs ---
+
+resource "aws_cloudwatch_log_group" "flow_logs" {
+  #checkov:skip=CKV_AWS_158: KMS encryption for log groups adds cost with no practical benefit for a PoC
+  name              = "/aws/vpc/${local.name_prefix}/flow-logs"
+  retention_in_days = 30
+
+  tags = merge(local.common_tags, { Name = "${local.name_prefix}-flow-logs" })
+}
+
+resource "aws_iam_role" "flow_logs" {
+  name               = "${local.name_prefix}-vpc-flow-logs-role"
+  assume_role_policy = file("${path.module}/policies/flow-logs-trust.json")
+
+  tags = merge(local.common_tags, { Name = "${local.name_prefix}-vpc-flow-logs-role" })
+}
+
+resource "aws_iam_policy" "flow_logs" {
+  name = "${local.name_prefix}-vpc-flow-logs-policy"
+  policy = templatefile("${path.module}/policies/flow-logs-permissions.json.tftpl", {
+    log_group_arn = aws_cloudwatch_log_group.flow_logs.arn
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "flow_logs" {
+  role       = aws_iam_role.flow_logs.name
+  policy_arn = aws_iam_policy.flow_logs.arn
+}
+
+resource "aws_flow_log" "main" {
+  vpc_id          = aws_vpc.main.id
+  traffic_type    = "ALL"
+  iam_role_arn    = aws_iam_role.flow_logs.arn
+  log_destination = aws_cloudwatch_log_group.flow_logs.arn
+
+  tags = merge(local.common_tags, { Name = "${local.name_prefix}-flow-logs" })
+}
