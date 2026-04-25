@@ -20,8 +20,10 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true #checkov:skip=CKV_AWS_130: Public subnets intentionally assign public IPs - required for load balancers and NAT Gateways
 
   tags = {
-    Name = "${local.name_prefix}-public-${local.azs[count.index]}"
-    Tier = "public"
+    Name                                             = "${local.name_prefix}-public-${local.azs[count.index]}"
+    Tier                                             = "public"
+    "kubernetes.io/role/elb"                         = "1"
+    "kubernetes.io/cluster/${local.name_prefix}-eks" = "shared"
   }
 }
 
@@ -33,8 +35,10 @@ resource "aws_subnet" "private" {
   availability_zone = local.azs[count.index]
 
   tags = {
-    Name = "${local.name_prefix}-private-${local.azs[count.index]}"
-    Tier = "private"
+    Name                                             = "${local.name_prefix}-private-${local.azs[count.index]}"
+    Tier                                             = "private"
+    "kubernetes.io/role/internal-elb"                = "1"
+    "kubernetes.io/cluster/${local.name_prefix}-eks" = "shared"
   }
 }
 

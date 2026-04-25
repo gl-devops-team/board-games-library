@@ -19,7 +19,7 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL ?? "http://localhost:30080"}/api/games/`)
+    fetch(`${import.meta.env.VITE_API_URL ?? ""}/api/games/`)
       .then(res => res.json())
       .then(data => {
         console.log("DATA:", data);

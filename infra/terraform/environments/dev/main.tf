@@ -35,3 +35,13 @@ module "secrets" {
   db_name        = var.db_name
   app_secret_key = var.app_secret_key
 }
+
+module "lbc" {
+  source = "../../modules/lbc"
+
+  project     = "boardgames"
+  environment = "dev"
+
+  oidc_provider_arn = module.eks.oidc_provider_arn
+  oidc_issuer       = module.eks.oidc_issuer
+}

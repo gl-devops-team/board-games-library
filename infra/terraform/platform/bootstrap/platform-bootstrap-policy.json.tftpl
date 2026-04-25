@@ -306,6 +306,38 @@
         "arn:aws:kms:eu-central-1:${account_id}:alias/boardgames-${environment}-*",
         "arn:aws:kms:eu-central-1:${account_id}:key/*"
       ]
+    },
+    {
+      "Sid": "ManageLbcIamRole",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:GetRole",
+        "iam:TagRole",
+        "iam:UntagRole",
+        "iam:ListRolePolicies",
+        "iam:ListAttachedRolePolicies",
+        "iam:ListInstanceProfilesForRole",
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:role/boardgames-${environment}-lbc-role"
+    },
+    {
+      "Sid": "ManageLbcIamPolicy",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreatePolicy",
+        "iam:DeletePolicy",
+        "iam:GetPolicy",
+        "iam:GetPolicyVersion",
+        "iam:ListPolicyVersions",
+        "iam:CreatePolicyVersion",
+        "iam:DeletePolicyVersion",
+        "iam:TagPolicy"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:policy/boardgames-${environment}-lbc-policy"
     }
   ]
 }
