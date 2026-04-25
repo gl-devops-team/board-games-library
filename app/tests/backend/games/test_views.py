@@ -1,40 +1,87 @@
-from unittest.mock import patch
-
+import pytest
 from django.urls import reverse
+from games.models import BoardGame
 
 
-@patch("games.views.get_games_from_xlsx")
-def test_game_list_view(mock_get_games_from_xlsx, client):
-    """This test verifies that:
-    - The game_list view calls the get_games_from_xlsx function to retrieve game data.
-    - The view renders the correct template with the expected context data.
-    """
-    # Mock the return value of get_games_from_xlsx
-    mock_get_games_from_xlsx.return_value = [
-        {
-            "name": "Catan",
-            "players": "3-4",
-            "time": "1:00",
-            "description": "Strategy",
-            "image_url": "https://example.com/catan.jpg",
-        },
-        {
-            "name": "Monopoly",
-            "players": "2-6",
-            "time": "2:00",
-            "description": "Family",
-            "image_url": "https://example.com/monopoly.jpg",
-        },
-    ]
+@pytest.mark.django_db
+def test_game_list_returns_all_games(client):
+    BoardGame.objects.create(
+        name="Catan",
+        min_players=3,
+        max_players=4,
+        game_time_minutes=60,
+        category="Strategy",
+        image_url="https://example.com/catan.jpg",
+    )
+    BoardGame.objects.create(
+        name="Monopoly",
+        min_players=2,
+        max_players=6,
+        game_time_minutes=120,
+        category="Family",
+        image_url="https://example.com/monopoly.jpg",
+    )
 
     url = reverse("game-list")
     response = client.get(url)
 
-    # Check if get_games_from_xlsx was called once
-    mock_get_games_from_xlsx.assert_called_once_with("Wroclaw_list of boardgames.xlsx")
-
-    # Check if the response is 200 OK
     assert response.status_code == 200
+    assert len(response.data) == 2
 
-    # Check if the context contains the expected games data
-    assert response.data == mock_get_games_from_xlsx.return_value
+
+@pytest.mark.django_db
+def test_game_list_returns_expected_fields(client):
+    BoardGame.objects.create(
+        name="Catan",
+        min_players=3,
+        max_players=4,
+        game_time_minutes=60,
+        category="Strategy",
+        image_url="https://example.com/catan.jpg",
+    )
+
+    url = reverse("game-list")
+    response = client.get(url)
+
+    game = response.data[0]
+    assert game["name"] == "Catan"
+    assert game["min_players"] == 3
+    assert game["max_players"] == 4
+    assert game["game_time_minutes"] == 60
+    assert game["category"] == "Strategy"
+    assert game["image_url"] == "https://example.com/catan.jpg"
+
+
+@pytest.mark.django_db
+def test_game_list_returns_games_sorted_by_name(client):
+    BoardGame.objects.create(
+        name="Monopoly",
+        min_players=2,
+        max_players=6,
+        game_time_minutes=120,
+        category="Family",
+        image_url="",
+    )
+    BoardGame.objects.create(
+        name="Catan",
+        min_players=3,
+        max_players=4,
+        game_time_minutes=60,
+        category="Strategy",
+        image_url="",
+    )
+
+    url = reverse("game-list")
+    response = client.get(url)
+
+    assert response.data[0]["name"] == "Catan"
+    assert response.data[1]["name"] == "Monopoly"
+
+
+@pytest.mark.django_db
+def test_game_list_empty_database(client):
+    url = reverse("game-list")
+    response = client.get(url)
+
+    assert response.status_code == 200
+    assert response.data == []

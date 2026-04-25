@@ -19,6 +19,8 @@ git pull git@github.com:gl-devops-team/board-games-library.git
 To use all current addons like PyTest or Ruff please use `requirements-dev` file as a dependencies list for `pip`:
 
 ```git
+virtualenv venv
+source venv/bin/activate
 pip install -r requirements-dev.txt
 ```
 

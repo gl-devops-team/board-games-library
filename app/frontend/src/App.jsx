@@ -19,7 +19,7 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:30080/api/games/")
+    fetch(`${import.meta.env.VITE_API_URL ?? "http://localhost:30080"}/api/games/`)
       .then(res => res.json())
       .then(data => {
         console.log("DATA:", data);
@@ -74,9 +74,9 @@ function Home() {
         <thead>
           <tr>
             <th onClick={() => handleSort("name")}>Nazwa ▲▼</th>
-            <th onClick={() => handleSort("players")}>Liczba graczy ▲▼</th>
-            <th onClick={() => handleSort("time")}>Czas gry ▲▼</th>
-            <th onClick={() => handleSort("description")}>Kategoria ▲▼</th>
+            <th onClick={() => handleSort("min_players")}>Liczba graczy ▲▼</th>
+            <th onClick={() => handleSort("game_time_minutes")}>Czas gry ▲▼</th>
+            <th onClick={() => handleSort("category")}>Kategoria ▲▼</th>
           </tr>
         </thead>
         <tbody>
@@ -84,9 +84,9 @@ function Home() {
             sortedGames.map((game, index) => (
               <tr key={index}>
                 <td>{game.name}</td>
-                <td>{game.players}</td>
-                <td>{game.time}</td>
-                <td>{game.description}</td>
+                <td>{game.min_players}-{game.max_players}</td>
+                <td>{game.game_time_minutes} min</td>
+                <td>{game.category}</td>
               </tr>
             ))
           ) : (
