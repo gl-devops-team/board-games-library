@@ -26,6 +26,12 @@ jobs:
   terraform-env-dev:
     runs-on: ubuntu-latest
 
+    env:
+      TF_VAR_db_user: ${{ secrets.TF_VAR_DB_USER }}
+      TF_VAR_db_password: ${{ secrets.TF_VAR_DB_PASSWORD }}
+      TF_VAR_db_name: ${{ secrets.TF_VAR_DB_NAME }}
+      TF_VAR_app_secret_key: ${{ secrets.TF_VAR_APP_SECRET_KEY }}
+
     defaults:
       run:
         working-directory: infra/terraform/environments/dev

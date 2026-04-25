@@ -240,6 +240,25 @@
         "logs:ListTagsForResource"
       ],
       "Resource": "arn:aws:logs:eu-central-1:${account_id}:log-group:/aws/eks/boardgames-${environment}-eks/*"
+    },
+    {
+      "Sid": "ManageSecretsManager",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:CreateSecret",
+        "secretsmanager:DeleteSecret",
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:PutSecretValue",
+        "secretsmanager:UpdateSecret",
+        "secretsmanager:TagResource",
+        "secretsmanager:UntagResource",
+        "secretsmanager:ListSecretVersionIds",
+        "secretsmanager:GetResourcePolicy",
+        "secretsmanager:PutResourcePolicy",
+        "secretsmanager:DeleteResourcePolicy"
+      ],
+      "Resource": "arn:aws:secretsmanager:eu-central-1:${account_id}:secret:boardgames-${environment}-*"
     }
   ]
 }
