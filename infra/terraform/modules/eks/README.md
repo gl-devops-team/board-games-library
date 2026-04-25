@@ -33,7 +33,7 @@ modules/eks/
 
 | Resource | Count | Notes |
 |---|---|---|
-| `aws_eks_cluster` | 1 | Private + public endpoint, API audit logs enabled |
+| `aws_eks_cluster` | 1 | Private + public endpoint, all 5 control plane log types enabled |
 | `aws_eks_node_group` | 1 | t3.medium, 1–3 nodes in private subnets |
 | `aws_iam_openid_connect_provider` | 1 | OIDC for IRSA |
 | `aws_iam_role` | 3 | cluster-role, node-role, irsa-role |
@@ -44,7 +44,7 @@ modules/eks/
 | `aws_eks_access_entry` | 1 | Platform role → cluster admin |
 | `aws_eks_access_policy_association` | 1 | AmazonEKSClusterAdminPolicy |
 
-Total: **19 resources**
+Total: **20 resources**
 
 ## Security groups
 

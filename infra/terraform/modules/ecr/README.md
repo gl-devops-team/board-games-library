@@ -31,7 +31,7 @@ modules/ecr/
 | Resource | Count | Notes |
 |---|---|---|
 | `aws_ecr_repository` | 2 | backend, frontend — immutable tags, scan on push |
-| `aws_ecr_lifecycle_policy` | 2 | Expire untagged after 1 day, keep last N tagged |
+| `aws_ecr_lifecycle_policy` | 2 | Expire untagged after 1 day, keep last N images |
 | `aws_ecr_repository_policy` | 2 | Scoped to `boardgames-dev-*` IAM roles |
 
 Total: **6 resources**

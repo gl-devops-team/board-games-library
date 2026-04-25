@@ -10,6 +10,7 @@ resource "aws_security_group" "cluster" {
 }
 
 resource "aws_security_group_rule" "cluster_egress" {
+  #checkov:skip=CKV_AWS_382: EKS control plane requires unrestricted outbound for node communication and AWS API calls
   type              = "egress"
   from_port         = 0
   to_port           = 0
@@ -39,6 +40,7 @@ resource "aws_security_group" "node" {
 }
 
 resource "aws_security_group_rule" "node_egress" {
+  #checkov:skip=CKV_AWS_382: EKS nodes require unrestricted outbound for ECR pulls, DNS, and AWS API calls
   type              = "egress"
   from_port         = 0
   to_port           = 0
@@ -73,6 +75,8 @@ resource "aws_security_group_rule" "node_ingress_cluster" {
 resource "aws_eks_cluster" "main" {
   #checkov:skip=CKV_AWS_58: Secrets encryption with KMS adds cost with no practical benefit for dev
   #checkov:skip=CKV_AWS_339: EKS version is pinned via var.kubernetes_version and updated deliberately
+  #checkov:skip=CKV_AWS_39: Public endpoint required for kubectl access from GitHub Actions and local development
+  #checkov:skip=CKV_AWS_38: Public endpoint CIDR restriction not feasible — GitHub Actions IPs are dynamic
   name     = "${local.name_prefix}-eks"
   role_arn = aws_iam_role.cluster.arn
   version  = var.kubernetes_version
@@ -88,7 +92,7 @@ resource "aws_eks_cluster" "main" {
     authentication_mode = "API_AND_CONFIG_MAP"
   }
 
-  enabled_cluster_log_types = ["api", "audit", "authenticator"]
+  enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 
   depends_on = [aws_iam_role_policy_attachment.cluster_policy]
 
