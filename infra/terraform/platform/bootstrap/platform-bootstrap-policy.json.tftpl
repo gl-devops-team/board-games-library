@@ -259,6 +259,48 @@
         "secretsmanager:DeleteResourcePolicy"
       ],
       "Resource": "arn:aws:secretsmanager:eu-central-1:${account_id}:secret:boardgames-${environment}-*"
+    },
+    {
+      "Sid": "CreateKmsKey",
+      "Effect": "Allow",
+      "Action": "kms:CreateKey",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestTag/Project": "boardgames"
+        }
+      }
+    },
+    {
+      "Sid": "ManageKmsKeys",
+      "Effect": "Allow",
+      "Action": [
+        "kms:DescribeKey",
+        "kms:GetKeyPolicy",
+        "kms:GetKeyRotationStatus",
+        "kms:ListResourceTags",
+        "kms:PutKeyPolicy",
+        "kms:ScheduleKeyDeletion",
+        "kms:CancelKeyDeletion",
+        "kms:EnableKeyRotation",
+        "kms:DisableKeyRotation",
+        "kms:TagResource",
+        "kms:UntagResource"
+      ],
+      "Resource": "arn:aws:kms:eu-central-1:${account_id}:key/*"
+    },
+    {
+      "Sid": "ManageKmsAliases",
+      "Effect": "Allow",
+      "Action": [
+        "kms:CreateAlias",
+        "kms:DeleteAlias",
+        "kms:ListAliases"
+      ],
+      "Resource": [
+        "arn:aws:kms:eu-central-1:${account_id}:alias/boardgames-${environment}-*",
+        "arn:aws:kms:eu-central-1:${account_id}:key/*"
+      ]
     }
   ]
 }

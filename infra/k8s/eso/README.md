@@ -42,6 +42,13 @@ kubectl get pods -n external-secrets
 
 ## Apply manifests
 
+> **Note:** `service-account.yaml` contains an `<ACCOUNT_ID>` placeholder. Before applying, fetch
+> the ARN from Terraform and render with envsubst:
+> ```bash
+> export IRSA_ROLE_ARN=$(terraform -chdir=infra/terraform/environments/dev output -raw irsa_role_arn)
+> envsubst < infra/k8s/eso/service-account.yaml | kubectl apply -f -
+> ```
+
 ```bash
 # ServiceAccount with IRSA annotation
 kubectl apply -f infra/k8s/eso/service-account.yaml
