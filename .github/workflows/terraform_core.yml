@@ -3,14 +3,20 @@ name: Terraform Core
 on:
   workflow_dispatch:
     inputs:
-      apply:
-        description: "Apply terraform changes (default: false)"
+      action:
+        description: "Terraform action to perform"
         required: true
-        default: "false"
+        default: "plan"
         type: choice
         options:
-        - "false"
-        - "true"
+        - "plan"
+        - "apply"
+        - "destroy"
+      confirm_destroy:
+        description: "Confirm destruction of resources (only used when action is 'destroy'). WARNING: destroy core LAST — correct order is env_dev → platform → core."
+        required: false
+        default: "false"
+        type: boolean
 
 permissions:
   id-token: write
@@ -49,8 +55,19 @@ jobs:
       run: terraform validate
 
     - name: Terraform Plan
+      if: ${{ github.event.inputs.action != 'destroy' }}
       run: terraform plan -out=tfplan.binary
 
     - name: Terraform Apply
-      if: ${{ github.event.inputs.apply == 'true' }}
+      if: ${{ github.event.inputs.action == 'apply' }}
       run: terraform apply -auto-approve tfplan.binary
+
+    - name: Terraform Plan Destroy
+      if: ${{ github.event.inputs.action == 'destroy' }}
+      run: terraform plan -destroy
+
+    # Note: S3 bucket has prevent_destroy = true — this step will intentionally fail.
+    # Core module is destroyed manually only, as it holds the Terraform state for all other modules.
+    - name: Terraform Destroy
+      if: ${{ github.event.inputs.action == 'destroy' && github.event.inputs.confirm_destroy == 'true' }}
+      run: terraform destroy -auto-approve
