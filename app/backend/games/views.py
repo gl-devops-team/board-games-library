@@ -9,6 +9,13 @@ def game_list(request):
     games = list(
         BoardGame.objects.all()
         .order_by("name")
-        .values("name", "min_players", "max_players", "game_time_minutes", "category", "image_url")  # noqa: E501
+        .values(
+            "name",
+            "min_players",
+            "max_players",
+            "game_time_minutes",
+            "category",
+            "image_url",
+        )  # noqa: E501
     )
     return Response(games)
