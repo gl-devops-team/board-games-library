@@ -2,9 +2,11 @@ from unittest.mock import patch
 
 import pytest
 from django.core.management import call_command
-
+from games.management.commands.import_board_games import (
+    _parse_players,
+    _parse_time_minutes,
+)
 from games.models import BoardGame
-from games.management.commands.import_board_games import _parse_players, _parse_time_minutes
 
 
 def test_parse_players_range():
@@ -50,7 +52,10 @@ MOCK_GAMES = [
 
 
 @pytest.mark.django_db
-@patch("games.management.commands.import_board_games.get_games_from_xlsx", return_value=MOCK_GAMES)
+@patch(
+    "games.management.commands.import_board_games.get_games_from_xlsx",
+    return_value=MOCK_GAMES,
+)
 def test_import_creates_games(mock_xlsx):
     call_command("import_board_games")
 
@@ -63,7 +68,10 @@ def test_import_creates_games(mock_xlsx):
 
 
 @pytest.mark.django_db
-@patch("games.management.commands.import_board_games.get_games_from_xlsx", return_value=MOCK_GAMES)
+@patch(
+    "games.management.commands.import_board_games.get_games_from_xlsx",
+    return_value=MOCK_GAMES,
+)
 def test_import_is_idempotent(mock_xlsx):
     call_command("import_board_games")
     call_command("import_board_games")
@@ -74,7 +82,15 @@ def test_import_is_idempotent(mock_xlsx):
 @pytest.mark.django_db
 @patch(
     "games.management.commands.import_board_games.get_games_from_xlsx",
-    return_value=[{"name": "", "players": "2-4", "time": "0:30", "description": "Family", "image_url": ""}],
+    return_value=[
+        {
+            "name": "",
+            "players": "2-4",
+            "time": "0:30",
+            "description": "Family",
+            "image_url": "",
+        }
+    ],
 )
 def test_import_skips_empty_name(mock_xlsx):
     call_command("import_board_games")

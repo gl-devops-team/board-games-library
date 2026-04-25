@@ -1,6 +1,5 @@
 import pytest
 from django.urls import reverse
-
 from games.models import BoardGame
 
 
@@ -56,10 +55,20 @@ def test_game_list_returns_expected_fields(client):
 @pytest.mark.django_db
 def test_game_list_returns_games_sorted_by_name(client):
     BoardGame.objects.create(
-        name="Monopoly", min_players=2, max_players=6, game_time_minutes=120, category="Family", image_url=""
+        name="Monopoly",
+        min_players=2,
+        max_players=6,
+        game_time_minutes=120,
+        category="Family",
+        image_url="",
     )
     BoardGame.objects.create(
-        name="Catan", min_players=3, max_players=4, game_time_minutes=60, category="Strategy", image_url=""
+        name="Catan",
+        min_players=3,
+        max_players=4,
+        game_time_minutes=60,
+        category="Strategy",
+        image_url="",
     )
 
     url = reverse("game-list")
