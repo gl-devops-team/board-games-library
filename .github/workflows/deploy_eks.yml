@@ -1,0 +1,53 @@
+name: Deploy to EKS
+
+on:
+  workflow_run:
+    workflows: ["Build and Push to ECR"]
+    types:
+      - completed
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    env:
+      IMAGE_TAG: ${{ github.event.workflow_run.head_sha }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v6
+      with:
+        role-to-assume: ${{ vars.AWS_PLATFORM_ROLE_ARN }}
+        aws-region: eu-central-1
+
+    - name: Configure kubectl
+      run: |
+        aws eks update-kubeconfig \
+          --region eu-central-1 \
+          --name boardgames-dev-eks
+
+    - name: Update image tags in manifests
+      run: |
+        sed -i "s|image: .*boardgames-dev/backend.*|image: ${{ vars.ECR_REGISTRY }}/boardgames-dev/backend:${{ env.IMAGE_TAG }}|" \
+          infra/k8s/backend-deployment.yaml
+        sed -i "s|image: .*boardgames-dev/frontend.*|image: ${{ vars.ECR_REGISTRY }}/boardgames-dev/frontend:${{ env.IMAGE_TAG }}|" \
+          infra/k8s/frontend-deployment.yaml
+
+    - name: Apply manifests
+      run: kubectl apply -f infra/k8s/
+
+    - name: Verify rollout
+      run: |
+        kubectl rollout status deployment/backend -n boardgames --timeout=120s
+        kubectl rollout status deployment/frontend -n boardgames --timeout=120s
+        kubectl rollout status deployment/db -n boardgames --timeout=120s
