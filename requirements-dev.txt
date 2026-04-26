@@ -34,9 +34,12 @@ defusedxml==0.7.1
     # via py-serializable
 distlib==0.4.0
     # via virtualenv
+dj-database-url==2.3.0
+    # via boardgames (pyproject.toml)
 django==6.0.2
     # via
     #   boardgames (pyproject.toml)
+    #   dj-database-url
     #   django-cors-headers
     #   djangorestframework
 django-cors-headers==4.9.0
@@ -97,6 +100,8 @@ pluggy==1.6.0
     #   pytest-cov
 pre-commit==4.5.1
     # via boardgames (pyproject.toml)
+psycopg2-binary==2.9.10
+    # via boardgames (pyproject.toml)
 py-serializable==2.1.0
     # via cyclonedx-python-lib
 pygments==2.19.2
@@ -143,7 +148,9 @@ tomli==2.4.0
 tomli-w==1.2.0
     # via pip-audit
 typing-extensions==4.15.0
-    # via cyclonedx-python-lib
+    # via
+    #   cyclonedx-python-lib
+    #   dj-database-url
 urllib3==2.6.3
     # via requests
 virtualenv==20.38.0

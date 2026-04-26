@@ -22,8 +22,10 @@ dependencies = [
     "Django==6.0.2",
     "django-cors-headers==4.9.0",
     "djangorestframework==3.16.1",
+    "dj-database-url==2.3.0",
     "gunicorn==25.1.0",
-    "openpyxl==3.1.5"
+    "openpyxl==3.1.5",
+    "psycopg2-binary==2.9.10",
 ]
 
 # -----------------------------

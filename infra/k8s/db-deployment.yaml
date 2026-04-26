@@ -7,6 +7,8 @@ metadata:
     checkov.io/skip1: "CKV_K8S_43=Image digest pinning impractical in development"
     checkov.io/skip2: "CKV_K8S_40=Postgres image requires UID 999, high UID would break data directory permissions"
     checkov.io/skip3: "CKV_K8S_35=Postgres initialization requires env vars, file-based secrets not supported"
+    checkov.io/skip4: "CKV_K8S_23=Postgres entrypoint starts as root to set ownership then drops to UID 999"
+    checkov.io/skip5: "CKV_K8S_37=Postgres initialization requires CHOWN and FOWNER capabilities, drop ALL breaks data dir setup"
 spec:
   replicas: 1
   selector:
@@ -19,7 +21,6 @@ spec:
     spec:
       automountServiceAccountToken: false
       securityContext:
-        runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
       containers:
@@ -56,7 +57,7 @@ spec:
             readOnlyRootFilesystem: true
             capabilities:
               drop:
-                - ALL
+                - NET_RAW
           livenessProbe:
             exec:
               command:
@@ -82,7 +83,8 @@ spec:
               mountPath: /var/run/postgresql
       volumes:
         - name: db-storage
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: db-storage
         - name: tmp
           emptyDir: {}
         - name: run-postgresql
