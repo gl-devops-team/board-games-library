@@ -17,8 +17,6 @@ spec:
         app: backend
     spec:
       automountServiceAccountToken: false
-      imagePullSecrets:
-        - name: ghcr-secret
       securityContext:
         runAsNonRoot: true
         runAsUser: 10000
@@ -27,7 +25,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: backend
-          image: ghcr.io/gl-devops-team/backend:1.1
+          image: ECR_REGISTRY/boardgames-dev/backend:placeholder
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
@@ -35,8 +33,13 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: db-secret
+                  name: db-credentials
                   key: DATABASE_URL
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-credentials
+                  key: SECRET_KEY
           resources:
             requests:
               cpu: "100m"

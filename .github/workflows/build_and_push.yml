@@ -1,0 +1,60 @@
+name: Build and Push to ECR
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Git ref to build (leave empty for HEAD of main)"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+      with:
+        ref: ${{ github.event.inputs.ref || github.sha }}
+
+    - name: Get image tag
+      id: tag
+      run: echo "tag=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v6
+      with:
+        role-to-assume: ${{ vars.AWS_PLATFORM_ROLE_ARN }}
+        aws-region: eu-central-1
+
+    - name: Login to ECR
+      run: |
+        aws ecr get-login-password --region eu-central-1 \
+          | docker login --username AWS --password-stdin \
+            ${{ vars.ECR_REGISTRY }}
+
+    - name: Build and push backend
+      run: |
+        docker build \
+          -f infra/docker/backend.Dockerfile \
+          -t ${{ vars.ECR_REGISTRY }}/boardgames-dev/backend:${{ steps.tag.outputs.tag }} \
+          .
+        docker push ${{ vars.ECR_REGISTRY }}/boardgames-dev/backend:${{ steps.tag.outputs.tag }}
+
+    - name: Build and push frontend
+      run: |
+        docker build \
+          -f infra/docker/frontend.Dockerfile \
+          --build-arg VITE_API_URL="" \
+          -t ${{ vars.ECR_REGISTRY }}/boardgames-dev/frontend:${{ steps.tag.outputs.tag }} \
+          .
+        docker push ${{ vars.ECR_REGISTRY }}/boardgames-dev/frontend:${{ steps.tag.outputs.tag }}

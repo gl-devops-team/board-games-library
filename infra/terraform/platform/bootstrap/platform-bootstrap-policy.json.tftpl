@@ -135,6 +135,18 @@
       "Resource": "*"
     },
     {
+      "Sid": "PushEcrImages",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:InitiateLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:CompleteLayerUpload",
+        "ecr:PutImage",
+        "ecr:BatchCheckLayerAvailability"
+      ],
+      "Resource": "arn:aws:ecr:eu-central-1:${account_id}:repository/boardgames-${environment}/*"
+    },
+    {
       "Sid": "ManageEksCluster",
       "Effect": "Allow",
       "Action": [
