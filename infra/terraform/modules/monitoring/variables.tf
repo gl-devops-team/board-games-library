@@ -22,11 +22,6 @@ variable "component" {
   default     = "monitoring"
 }
 
-variable "cluster_name" {
-  description = "EKS cluster name — used to construct Container Insights log group paths"
-  type        = string
-}
-
 variable "oidc_provider_arn" {
   description = "ARN of the EKS OIDC provider for IRSA"
   type        = string

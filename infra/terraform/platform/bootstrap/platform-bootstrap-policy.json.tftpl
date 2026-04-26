@@ -206,7 +206,8 @@
         "arn:aws:iam::${account_id}:role/boardgames-${environment}-eks-node-role",
         "arn:aws:iam::${account_id}:role/boardgames-${environment}-irsa-role",
         "arn:aws:iam::${account_id}:role/boardgames-${environment}-ebs-csi-role",
-        "arn:aws:iam::${account_id}:role/boardgames-${environment}-cloudwatch-agent-role"
+        "arn:aws:iam::${account_id}:role/boardgames-${environment}-cloudwatch-agent-role",
+        "arn:aws:iam::${account_id}:role/boardgames-${environment}-grafana-role"
       ]
     },
     {
@@ -396,6 +397,21 @@
         "iam:TagPolicy"
       ],
       "Resource": "arn:aws:iam::${account_id}:policy/boardgames-${environment}-lbc-policy"
+    },
+    {
+      "Sid": "ManageGrafanaIamPolicy",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreatePolicy",
+        "iam:DeletePolicy",
+        "iam:GetPolicy",
+        "iam:GetPolicyVersion",
+        "iam:ListPolicyVersions",
+        "iam:CreatePolicyVersion",
+        "iam:DeletePolicyVersion",
+        "iam:TagPolicy"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:policy/boardgames-${environment}-grafana-cloudwatch"
     },
     {
       "Sid": "ManageVpcFlowLogsIam",

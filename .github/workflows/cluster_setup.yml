@@ -100,6 +100,16 @@ jobs:
     - name: Apply Ingress
       run: kubectl apply -f infra/k8s/ingress.yaml
 
+    - name: Apply Grafana manifests
+      run: |
+        kubectl apply -f infra/k8s/monitoring/namespace.yaml
+        export GRAFANA_ROLE_ARN=$(terraform -chdir=infra/terraform/environments/dev output -raw grafana_irsa_role_arn)
+        envsubst < infra/k8s/monitoring/grafana-serviceaccount.yaml | kubectl apply -f -
+        kubectl apply -f infra/k8s/monitoring/grafana-configmap.yaml
+        kubectl apply -f infra/k8s/monitoring/network-policy.yaml
+        kubectl apply -f infra/k8s/monitoring/grafana-deployment.yaml
+        kubectl apply -f infra/k8s/monitoring/grafana-service.yaml
+
     - name: Verify
       run: |
         kubectl wait --for=condition=ready pod \
@@ -107,3 +117,10 @@ jobs:
           -n kube-system \
           --timeout=120s
         kubectl get ingress -n boardgames
+
+    - name: Print Grafana access
+      run: |
+        kubectl rollout status deployment/grafana -n monitoring --timeout=120s
+        echo "Grafana is not exposed via Ingress — use port-forward to access it:"
+        echo "  kubectl port-forward svc/grafana 3000:3000 -n monitoring"
+        echo "Then open: http://localhost:3000"
