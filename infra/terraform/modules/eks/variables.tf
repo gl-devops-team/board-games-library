@@ -71,3 +71,15 @@ variable "node_max_size" {
   type        = number
   default     = 3
 }
+
+variable "irsa_namespace" {
+  description = "Kubernetes namespace of the ServiceAccount allowed to assume the IRSA role"
+  type        = string
+  default     = "boardgames"
+}
+
+variable "irsa_service_account_name" {
+  description = "Kubernetes ServiceAccount name allowed to assume the IRSA role"
+  type        = string
+  default     = "external-secrets-sa"
+}
