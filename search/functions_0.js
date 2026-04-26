@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_5fcell_0',['_cell',['../namespacetest__utils.html#a8cce034397c262ac12faca03f02b3fab',1,'test_utils']]]
+  ['_5f_5fstr_5f_5f_0',['__str__',['../classgames_1_1models_1_1BoardGame.html#a4b70b1b1e7acc94f59140ba20270c103',1,'games::models::BoardGame']]]
 ];

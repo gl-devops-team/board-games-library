@@ -85,18 +85,27 @@ $(document).ready(function() { init_codefold(0); });
 <a href="views_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespacegames_1_1views.html">    1</a></span><span class="keyword">from</span> rest_framework.decorators <span class="keyword">import</span> api_view</div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">from</span> <a class="code hl_namespace" href="namespacegames_1_1utils.html">games.utils</a> <span class="keyword">import</span> get_games_from_xlsx</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">from</span> <a class="code hl_namespace" href="namespacegames_1_1models.html">games.models</a> <span class="keyword">import</span> BoardGame</div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="namespacegames_1_1views.html#aef423bb72aedad4c3d568f5444a2cb6c">    6</a></span>SHEET_NAME = <span class="stringliteral">&quot;Wroclaw_list of boardgames.xlsx&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">@api_view([&quot;GET&quot;])</span></div>
-<div class="foldopen" id="foldopen00010" data-start="" data-end="">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespacegames_1_1views.html#a34734253e9994d2cf9abb8c669ad47bd">   10</a></span><span class="keyword">def </span>game_list(request):</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    games = get_games_from_xlsx(SHEET_NAME)</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordflow">return</span> Response(games)</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">@api_view([&quot;GET&quot;])</span></div>
+<div class="foldopen" id="foldopen00008" data-start="" data-end="">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="namespacegames_1_1views.html#a34734253e9994d2cf9abb8c669ad47bd">    8</a></span><span class="keyword">def </span>game_list(request):</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    games = list(</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        BoardGame.objects.all()</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        .order_by(<span class="stringliteral">&quot;name&quot;</span>)</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        .values(</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>            <span class="stringliteral">&quot;name&quot;</span>,</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>            <span class="stringliteral">&quot;min_players&quot;</span>,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            <span class="stringliteral">&quot;max_players&quot;</span>,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            <span class="stringliteral">&quot;game_time_minutes&quot;</span>,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            <span class="stringliteral">&quot;category&quot;</span>,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <span class="stringliteral">&quot;image_url&quot;</span>,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        )  <span class="comment"># noqa: E501</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    )</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">return</span> Response(games)</div>
 </div>
-<div class="ttc" id="anamespacegames_1_1utils_html"><div class="ttname"><a href="namespacegames_1_1utils.html">games.utils</a></div><div class="ttdef"><b>Definition</b> <a href="utils_8py_source.html#l00001">utils.py:1</a></div></div>
+<div class="ttc" id="anamespacegames_1_1models_html"><div class="ttname"><a href="namespacegames_1_1models.html">games.models</a></div><div class="ttdef"><b>Definition</b> <a href="models_8py_source.html#l00001">models.py:1</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

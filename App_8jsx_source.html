@@ -103,7 +103,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  const navigate = useNavigate();</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  useEffect(() =&gt; {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    fetch(&quot;http://localhost:30080/api/games/&quot;)</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    fetch(`${import.meta.env.VITE_API_URL ?? &quot;&quot;}/api/games/`)</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>      .then(res =&gt; res.json())</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>      .then(data =&gt; {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        console.log(&quot;DATA:&quot;, data);</div>
@@ -158,9 +158,9 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        &lt;thead&gt;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>          &lt;tr&gt;</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            &lt;th onClick={() =&gt; handleSort(&quot;name&quot;)}&gt;Nazwa ▲▼&lt;/th&gt;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            &lt;th onClick={() =&gt; handleSort(&quot;players&quot;)}&gt;Liczba graczy ▲▼&lt;/th&gt;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            &lt;th onClick={() =&gt; handleSort(&quot;time&quot;)}&gt;Czas gry ▲▼&lt;/th&gt;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            &lt;th onClick={() =&gt; handleSort(&quot;description&quot;)}&gt;Kategoria ▲▼&lt;/th&gt;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            &lt;th onClick={() =&gt; handleSort(&quot;min_players&quot;)}&gt;Liczba graczy ▲▼&lt;/th&gt;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            &lt;th onClick={() =&gt; handleSort(&quot;game_time_minutes&quot;)}&gt;Czas gry ▲▼&lt;/th&gt;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            &lt;th onClick={() =&gt; handleSort(&quot;category&quot;)}&gt;Kategoria ▲▼&lt;/th&gt;</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>          &lt;/tr&gt;</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        &lt;/thead&gt;</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        &lt;tbody&gt;</div>
@@ -168,9 +168,9 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            sortedGames.map((game, index) =&gt; (</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>              &lt;tr key={index}&gt;</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                &lt;td&gt;{game.name}&lt;/td&gt;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                &lt;td&gt;{game.players}&lt;/td&gt;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                &lt;td&gt;{game.time}&lt;/td&gt;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                &lt;td&gt;{game.description}&lt;/td&gt;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                &lt;td&gt;{game.min_players}-{game.max_players}&lt;/td&gt;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                &lt;td&gt;{game.game_time_minutes} min&lt;/td&gt;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                &lt;td&gt;{game.category}&lt;/td&gt;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>              &lt;/tr&gt;</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            ))</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>          ) : (</div>

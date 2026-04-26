@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['secret_5fkey_0',['SECRET_KEY',['../namespaceboardgames_1_1settings.html#aab3c790a1947916591d73eea8aeefc2d',1,'boardgames::settings']]],
-  ['sheet_5fname_1',['SHEET_NAME',['../namespacegames_1_1views.html#aef423bb72aedad4c3d568f5444a2cb6c',1,'games::views']]],
-  ['static_5furl_2',['STATIC_URL',['../namespaceboardgames_1_1settings.html#a17dd39957eea7a6539a40aa58362758d',1,'boardgames::settings']]]
+  ['operations_0',['operations',['../classgames_1_1migrations_1_10001__initial_1_1Migration.html#a18e6d9ff6b8af440d4157721fd2dd191',1,'games::migrations::0001_initial::Migration']]]
 ];

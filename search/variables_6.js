@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['middleware_0',['MIDDLEWARE',['../namespaceboardgames_1_1settings.html#a9d7e38159ed46203a4680825a4c99bb1',1,'boardgames::settings']]]
+  ['language_5fcode_0',['LANGUAGE_CODE',['../namespaceboardgames_1_1settings.html#a0aa189d9b7be6c5c0d693b9354f6e6a3',1,'boardgames::settings']]]
 ];

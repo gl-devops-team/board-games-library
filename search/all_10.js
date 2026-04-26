@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['wsgi_2epy_0',['wsgi.py',['../wsgi_8py.html',1,'']]],
-  ['wsgi_5fapplication_1',['WSGI_APPLICATION',['../namespaceboardgames_1_1settings.html#ab065a295f420fe99db8add3854f05037',1,'boardgames::settings']]]
+  ['urlpatterns_0',['urlpatterns',['../namespaceboardgames_1_1urls.html#aef5c4e38e53303c1f9b235e4814f4833',1,'boardgames.urls.urlpatterns'],['../namespacegames_1_1urls.html#aa70194b558f8121472f7e2cec96bdbb9',1,'games.urls.urlpatterns']]],
+  ['urls_2epy_1',['urls.py',['../boardgames_2urls_8py.html',1,'(Global Namespace)'],['../games_2urls_8py.html',1,'(Global Namespace)']]],
+  ['use_5fi18n_2',['USE_I18N',['../namespaceboardgames_1_1settings.html#a10fe4f2dd2f66d8edaadbe6077cfe89f',1,'boardgames::settings']]],
+  ['use_5ftz_3',['USE_TZ',['../namespaceboardgames_1_1settings.html#a645d2ee1ee39b08c60a7d2826831f293',1,'boardgames::settings']]]
 ];

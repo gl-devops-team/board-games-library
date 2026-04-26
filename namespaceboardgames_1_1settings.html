@@ -84,12 +84,12 @@ $(function() {
 Variables</h2></td></tr>
 <tr class="memitem:af07e86aea03401919941b7de97b131e4" id="r_af07e86aea03401919941b7de97b131e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboardgames_1_1settings.html#af07e86aea03401919941b7de97b131e4">BASE_DIR</a> = Path(__file__).resolve().parent.parent</td></tr>
 <tr class="separator:af07e86aea03401919941b7de97b131e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab3c790a1947916591d73eea8aeefc2d" id="r_aab3c790a1947916591d73eea8aeefc2d"><td class="memItemLeft" align="right" valign="top">str&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboardgames_1_1settings.html#aab3c790a1947916591d73eea8aeefc2d">SECRET_KEY</a> = &quot;django-insecure-hf4i7-xa^w-^^rzn)ph9*yd2g2jz$0qzx3omi!q8vq+yang%&amp;s&quot;</td></tr>
-<tr class="separator:aab3c790a1947916591d73eea8aeefc2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a007df9efa527398d53ff50eef37dd18a" id="r_a007df9efa527398d53ff50eef37dd18a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboardgames_1_1settings.html#a007df9efa527398d53ff50eef37dd18a">SECRET_KEY</a> = os.environ.get(&quot;DJANGO_SECRET_KEY&quot;, &quot;django-insecure-dev-only-fallback&quot;)</td></tr>
+<tr class="separator:a007df9efa527398d53ff50eef37dd18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0d2e903bb91de3db1d95ddbb3771e39" id="r_ae0d2e903bb91de3db1d95ddbb3771e39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboardgames_1_1settings.html#ae0d2e903bb91de3db1d95ddbb3771e39">DEBUG</a> = True</td></tr>
 <tr class="separator:ae0d2e903bb91de3db1d95ddbb3771e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99a6fac009bf05bece7dc5089902e12c" id="r_a99a6fac009bf05bece7dc5089902e12c"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboardgames_1_1settings.html#a99a6fac009bf05bece7dc5089902e12c">ALLOWED_HOSTS</a> = []</td></tr>
-<tr class="separator:a99a6fac009bf05bece7dc5089902e12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166d6c9f8ce42e0eb759a5642d6cc292" id="r_a166d6c9f8ce42e0eb759a5642d6cc292"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboardgames_1_1settings.html#a166d6c9f8ce42e0eb759a5642d6cc292">ALLOWED_HOSTS</a> = os.environ.get(&quot;DJANGO_ALLOWED_HOSTS&quot;, &quot;*&quot;).split(&quot;,&quot;)</td></tr>
+<tr class="separator:a166d6c9f8ce42e0eb759a5642d6cc292"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3903e9185389c9ff3bb89a8dd695d231" id="r_a3903e9185389c9ff3bb89a8dd695d231"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboardgames_1_1settings.html#a3903e9185389c9ff3bb89a8dd695d231">INSTALLED_APPS</a></td></tr>
 <tr class="separator:a3903e9185389c9ff3bb89a8dd695d231"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d7e38159ed46203a4680825a4c99bb1" id="r_a9d7e38159ed46203a4680825a4c99bb1"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboardgames_1_1settings.html#a9d7e38159ed46203a4680825a4c99bb1">MIDDLEWARE</a></td></tr>
@@ -130,19 +130,19 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 </pre> </div><h2 class="groupheader">Variable Documentation</h2>
-<a id="a99a6fac009bf05bece7dc5089902e12c" name="a99a6fac009bf05bece7dc5089902e12c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99a6fac009bf05bece7dc5089902e12c">&#9670;&#160;</a></span>ALLOWED_HOSTS</h2>
+<a id="a166d6c9f8ce42e0eb759a5642d6cc292" name="a166d6c9f8ce42e0eb759a5642d6cc292"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a166d6c9f8ce42e0eb759a5642d6cc292">&#9670;&#160;</a></span>ALLOWED_HOSTS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">list boardgames.settings.ALLOWED_HOSTS = []</td>
+          <td class="memname">boardgames.settings.ALLOWED_HOSTS = os.environ.get(&quot;DJANGO_ALLOWED_HOSTS&quot;, &quot;*&quot;).split(&quot;,&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00028">28</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00031">31</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -172,7 +172,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 <div class="line"><span class="lineno">   13</span>    },</div>
 <div class="line"><span class="lineno">   14</span>]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00092">92</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00095">95</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -188,7 +188,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00016">16</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00019">19</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -204,7 +204,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00056">56</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00059">59</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -220,13 +220,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line"><span class="lineno">    1</span>=  {</div>
-<div class="line"><span class="lineno">    2</span>    <span class="stringliteral">&quot;default&quot;</span>: {</div>
-<div class="line"><span class="lineno">    3</span>        <span class="stringliteral">&quot;ENGINE&quot;</span>: <span class="stringliteral">&quot;django.db.backends.sqlite3&quot;</span>,</div>
-<div class="line"><span class="lineno">    4</span>        <span class="stringliteral">&quot;NAME&quot;</span>: BASE_DIR / <span class="stringliteral">&quot;db.sqlite3&quot;</span>,</div>
-<div class="line"><span class="lineno">    5</span>    }</div>
+<div class="line"><span class="lineno">    2</span>    <span class="stringliteral">&quot;default&quot;</span>: dj_database_url.config(</div>
+<div class="line"><span class="lineno">    3</span>        default=f<span class="stringliteral">&quot;sqlite:///{BASE_DIR / &#39;db.sqlite3&#39;}&quot;</span>,</div>
+<div class="line"><span class="lineno">    4</span>        conn_max_age=600,</div>
+<div class="line"><span class="lineno">    5</span>    )</div>
 <div class="line"><span class="lineno">    6</span>}</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00081">81</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00084">84</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -242,7 +242,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00026">26</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00029">29</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -258,7 +258,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00128">128</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00131">131</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -285,7 +285,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 <div class="line"><span class="lineno">   10</span>    <span class="stringliteral">&quot;corsheaders&quot;</span>,</div>
 <div class="line"><span class="lineno">   11</span>]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00033">33</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00036">36</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -301,7 +301,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00111">111</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00114">114</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -327,7 +327,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 <div class="line"><span class="lineno">    9</span>    <span class="stringliteral">&quot;django.middleware.clickjacking.XFrameOptionsMiddleware&quot;</span>,</div>
 <div class="line"><span class="lineno">   10</span>]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00045">45</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00048">48</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -343,23 +343,23 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00058">58</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00061">61</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
-<a id="aab3c790a1947916591d73eea8aeefc2d" name="aab3c790a1947916591d73eea8aeefc2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab3c790a1947916591d73eea8aeefc2d">&#9670;&#160;</a></span>SECRET_KEY</h2>
+<a id="a007df9efa527398d53ff50eef37dd18a" name="a007df9efa527398d53ff50eef37dd18a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a007df9efa527398d53ff50eef37dd18a">&#9670;&#160;</a></span>SECRET_KEY</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">str boardgames.settings.SECRET_KEY = &quot;django-insecure-hf4i7-xa^w-^^rzn)ph9*yd2g2jz$0qzx3omi!q8vq+yang%&amp;s&quot;</td>
+          <td class="memname">boardgames.settings.SECRET_KEY = os.environ.get(&quot;DJANGO_SECRET_KEY&quot;, &quot;django-insecure-dev-only-fallback&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00023">23</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00026">26</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -375,7 +375,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00123">123</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00126">126</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -405,7 +405,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 <div class="line"><span class="lineno">   13</span>    },</div>
 <div class="line"><span class="lineno">   14</span>]</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00060">60</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00063">63</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -421,7 +421,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00113">113</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00116">116</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -437,7 +437,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00115">115</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00118">118</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -453,7 +453,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00117">117</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00120">120</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>
@@ -469,7 +469,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00075">75</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="settings_8py_source.html#l00078">78</a> of file <a class="el" href="settings_8py_source.html">settings.py</a>.</p>
 
 </div>
 </div>

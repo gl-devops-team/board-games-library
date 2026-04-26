@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['urls_2epy_0',['urls.py',['../boardgames_2urls_8py.html',1,'(Global Namespace)'],['../games_2urls_8py.html',1,'(Global Namespace)']]],
-  ['utils_2epy_1',['utils.py',['../utils_8py.html',1,'']]]
+  ['test_5furls_2epy_0',['test_urls.py',['../test__urls_8py.html',1,'']]],
+  ['test_5fviews_2epy_1',['test_views.py',['../test__views_8py.html',1,'']]]
 ];

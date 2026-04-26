@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['admin_2epy_0',['admin.py',['../admin_8py.html',1,'']]],
-  ['allowed_5fhosts_1',['ALLOWED_HOSTS',['../namespaceboardgames_1_1settings.html#a99a6fac009bf05bece7dc5089902e12c',1,'boardgames::settings']]],
-  ['app_2ejsx_2',['App.jsx',['../App_8jsx.html',1,'']]],
-  ['application_3',['application',['../namespaceboardgames_1_1asgi.html#aad5335344c23225365e627a079f8dedd',1,'boardgames.asgi.application'],['../namespaceboardgames_1_1wsgi.html#ada0010a60938c5a67938c9728d721ee7',1,'boardgames.wsgi.application']]],
-  ['apps_2epy_4',['apps.py',['../apps_8py.html',1,'']]],
-  ['asgi_2epy_5',['asgi.py',['../asgi_8py.html',1,'']]],
-  ['auth_5fpassword_5fvalidators_6',['AUTH_PASSWORD_VALIDATORS',['../namespaceboardgames_1_1settings.html#aa1ed60cb444759aa010a7a4af2b742be',1,'boardgames::settings']]]
+  ['_5f_5finit_5f_5f_2epy_0',['__init__.py',['../boardgames_2____init_____8py.html',1,'(Global Namespace)'],['../games_2____init_____8py.html',1,'(Global Namespace)'],['../games_2migrations_2____init_____8py.html',1,'(Global Namespace)']]],
+  ['_5f_5fstr_5f_5f_1',['__str__',['../classgames_1_1models_1_1BoardGame.html#a4b70b1b1e7acc94f59140ba20270c103',1,'games::models::BoardGame']]]
 ];

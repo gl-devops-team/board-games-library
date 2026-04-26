@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['urlpatterns_0',['urlpatterns',['../namespaceboardgames_1_1urls.html#aef5c4e38e53303c1f9b235e4814f4833',1,'boardgames.urls.urlpatterns'],['../namespacegames_1_1urls.html#aa70194b558f8121472f7e2cec96bdbb9',1,'games.urls.urlpatterns']]],
-  ['urls_2epy_1',['urls.py',['../boardgames_2urls_8py.html',1,'(Global Namespace)'],['../games_2urls_8py.html',1,'(Global Namespace)']]],
-  ['use_5fi18n_2',['USE_I18N',['../namespaceboardgames_1_1settings.html#a10fe4f2dd2f66d8edaadbe6077cfe89f',1,'boardgames::settings']]],
-  ['use_5ftz_3',['USE_TZ',['../namespaceboardgames_1_1settings.html#a645d2ee1ee39b08c60a7d2826831f293',1,'boardgames::settings']]],
-  ['utils_2epy_4',['utils.py',['../utils_8py.html',1,'']]]
+  ['secret_5fkey_0',['SECRET_KEY',['../namespaceboardgames_1_1settings.html#a007df9efa527398d53ff50eef37dd18a',1,'boardgames::settings']]],
+  ['settings_2epy_1',['settings.py',['../settings_8py.html',1,'']]],
+  ['static_5furl_2',['STATIC_URL',['../namespaceboardgames_1_1settings.html#a17dd39957eea7a6539a40aa58362758d',1,'boardgames::settings']]]
 ];

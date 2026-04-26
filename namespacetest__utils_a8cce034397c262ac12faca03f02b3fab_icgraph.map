@@ -1,9 +1,0 @@
-<map id="test_utils._cell" name="test_utils._cell">
-<area shape="rect" id="Node000001" title=" " alt="" coords="291,85,407,110"/>
-<area shape="rect" id="Node000002" href="$namespacetest__utils.html#a1b3e1e8fb746c14570d7fe7232bc1adb" title=" " alt="" coords="5,5,243,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="303,82,242,60,203,48,204,43,244,55,305,77"/>
-<area shape="rect" id="Node000003" href="$namespacetest__utils.html#a7bd2bd44629b845f99d172214e29125e" title=" " alt="" coords="23,70,225,125"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="277,100,225,100,225,95,277,95"/>
-<area shape="rect" id="Node000004" href="$namespacetest__utils.html#a7074867df13423d086da830409d302c0" title=" " alt="" coords="25,149,223,203"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="302,117,244,139,208,151,206,146,242,133,300,112"/>
-</map>

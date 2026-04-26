@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['wsgi_5fapplication_0',['WSGI_APPLICATION',['../namespaceboardgames_1_1settings.html#ab065a295f420fe99db8add3854f05037',1,'boardgames::settings']]]
+  ['templates_0',['TEMPLATES',['../namespaceboardgames_1_1settings.html#aab4ff5a0ac7f188dd7dc202e6283aac9',1,'boardgames::settings']]],
+  ['time_5fzone_1',['TIME_ZONE',['../namespaceboardgames_1_1settings.html#aa38f5e6ef5a6f75c878c3399a35bcab4',1,'boardgames::settings']]]
 ];

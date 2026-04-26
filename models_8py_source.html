@@ -82,9 +82,26 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">models.py</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="models_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespacegames_1_1models.html">    1</a></span><span class="keyword">from</span> django.db <span class="keyword">import</span> models  <span class="comment"># noqa: F401</span></div>
+<a href="models_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespacegames_1_1models.html">    1</a></span><span class="keyword">from</span> django.db <span class="keyword">import</span> models</div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"># Create your models here.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="foldopen" id="foldopen00004" data-start="" data-end="">
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="classgames_1_1models_1_1BoardGame.html">    4</a></span><span class="keyword">class </span><a class="code hl_class" href="classgames_1_1models_1_1BoardGame.html">BoardGame</a>(models.Model):</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classgames_1_1models_1_1BoardGame.html#a2e4892ec1d8cd10fcb0630bcf62cd484">    5</a></span>    name = models.CharField(max_length=200, db_index=<span class="keyword">True</span>)</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classgames_1_1models_1_1BoardGame.html#a4d7b893af62ca5136edc1b48ba4eb7fe">    6</a></span>    min_players = models.PositiveSmallIntegerField()</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classgames_1_1models_1_1BoardGame.html#a60144ba356a1894c39415cc4078d5d31">    7</a></span>    max_players = models.PositiveSmallIntegerField()</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classgames_1_1models_1_1BoardGame.html#a7cafe6c9748da362b4aea1e8caa4231b">    8</a></span>    game_time_minutes = models.PositiveSmallIntegerField()</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classgames_1_1models_1_1BoardGame.html#adc8e6d0b250922fa540b998587633e35">    9</a></span>    category = models.CharField(max_length=100, db_index=<span class="keyword">True</span>)</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classgames_1_1models_1_1BoardGame.html#a416a4b460b2c97d36e7d1322a11a3277">   10</a></span>    image_url = models.URLField(max_length=500)</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="foldopen" id="foldopen00012" data-start="" data-end="">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classgames_1_1models_1_1BoardGame.html#a4b70b1b1e7acc94f59140ba20270c103">   12</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classgames_1_1models_1_1BoardGame.html#a4b70b1b1e7acc94f59140ba20270c103">__str__</a>(self):</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="keywordflow">return</span> self.<a class="code hl_variable" href="classgames_1_1models_1_1BoardGame.html#a2e4892ec1d8cd10fcb0630bcf62cd484">name</a></div>
+</div>
+</div>
+<div class="ttc" id="aclassgames_1_1models_1_1BoardGame_html"><div class="ttname"><a href="classgames_1_1models_1_1BoardGame.html">games.models.BoardGame</a></div><div class="ttdef"><b>Definition</b> <a href="models_8py_source.html#l00004">models.py:4</a></div></div>
+<div class="ttc" id="aclassgames_1_1models_1_1BoardGame_html_a2e4892ec1d8cd10fcb0630bcf62cd484"><div class="ttname"><a href="classgames_1_1models_1_1BoardGame.html#a2e4892ec1d8cd10fcb0630bcf62cd484">games.models.BoardGame.name</a></div><div class="ttdeci">name</div><div class="ttdef"><b>Definition</b> <a href="models_8py_source.html#l00005">models.py:5</a></div></div>
+<div class="ttc" id="aclassgames_1_1models_1_1BoardGame_html_a4b70b1b1e7acc94f59140ba20270c103"><div class="ttname"><a href="classgames_1_1models_1_1BoardGame.html#a4b70b1b1e7acc94f59140ba20270c103">games.models.BoardGame.__str__</a></div><div class="ttdeci">__str__(self)</div><div class="ttdef"><b>Definition</b> <a href="models_8py_source.html#l00012">models.py:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
