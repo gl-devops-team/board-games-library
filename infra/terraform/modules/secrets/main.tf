@@ -22,9 +22,10 @@ resource "aws_kms_alias" "secrets" {
 
 resource "aws_secretsmanager_secret" "db" {
   #checkov:skip=CKV2_AWS_57: Automatic rotation requires Lambda-based rotator coordinating with the database — out of scope for PoC
-  name        = "${local.name_prefix}-db"
-  description = "PostgreSQL credentials for ${local.name_prefix} application"
-  kms_key_id  = aws_kms_key.secrets.arn
+  name                    = "${local.name_prefix}-db"
+  description             = "PostgreSQL credentials for ${local.name_prefix} application"
+  kms_key_id              = aws_kms_key.secrets.arn
+  recovery_window_in_days = 0
 
   tags = merge(local.common_tags, { Name = "${local.name_prefix}-db" })
 }
@@ -43,9 +44,10 @@ resource "aws_secretsmanager_secret_version" "db" {
 
 resource "aws_secretsmanager_secret" "app" {
   #checkov:skip=CKV2_AWS_57: Automatic rotation requires Lambda-based rotator — out of scope for PoC
-  name        = "${local.name_prefix}-app"
-  description = "Application secrets for ${local.name_prefix}"
-  kms_key_id  = aws_kms_key.secrets.arn
+  name                    = "${local.name_prefix}-app"
+  description             = "Application secrets for ${local.name_prefix}"
+  kms_key_id              = aws_kms_key.secrets.arn
+  recovery_window_in_days = 0
 
   tags = merge(local.common_tags, { Name = "${local.name_prefix}-app" })
 }

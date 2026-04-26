@@ -36,11 +36,34 @@ else
     --assume-role-policy-document file:///tmp/assume-role-policy.json
 fi
 
-echo "Applying bootstrap policy to role: ${platform_role_name}"
-envsubst < "${SCRIPT_DIR}/platform-bootstrap-policy.json.tftpl" > /tmp/bootstrap-policy.json
+echo "Removing existing inline policies from role: ${platform_role_name}"
+existing_policies=$(aws iam list-role-policies \
+  --role-name "${platform_role_name}" \
+  --query 'PolicyNames' --output text)
+for policy_name in ${existing_policies}; do
+  echo "  Deleting inline policy: ${policy_name}"
+  aws iam delete-role-policy \
+    --role-name "${platform_role_name}" \
+    --policy-name "${policy_name}"
+done
+
+compact_json() {
+  python3 -c "import json,sys; print(json.dumps(json.load(sys.stdin)))"
+}
+
+echo "Applying bootstrap policies to role: ${platform_role_name}"
+envsubst < "${SCRIPT_DIR}/platform-bootstrap-policy.json.tftpl" \
+  | compact_json > /tmp/bootstrap-policy-1.json
 aws iam put-role-policy \
   --role-name "${platform_role_name}" \
   --policy-name "boardgames-dev-platform-bootstrap" \
-  --policy-document file:///tmp/bootstrap-policy.json
+  --policy-document file:///tmp/bootstrap-policy-1.json
+
+envsubst < "${SCRIPT_DIR}/platform-bootstrap-policy-2.json.tftpl" \
+  | compact_json > /tmp/bootstrap-policy-2.json
+aws iam put-role-policy \
+  --role-name "${platform_role_name}" \
+  --policy-name "boardgames-dev-platform-bootstrap-2" \
+  --policy-document file:///tmp/bootstrap-policy-2.json
 
 echo "Bootstrap complete. Run 'terraform apply' in infra/terraform/platform/ next."

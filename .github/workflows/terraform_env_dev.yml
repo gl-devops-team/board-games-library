@@ -85,11 +85,13 @@ jobs:
           exit 0
         fi
         aws eks update-kubeconfig --region eu-central-1 --name boardgames-dev-eks
+        echo "Deleting monitoring namespace (Grafana + Ingress)..."
+        kubectl delete namespace monitoring --ignore-not-found --wait=false
         if kubectl get ingress boardgames -n boardgames &>/dev/null; then
-          echo "Deleting ingress to remove ALB..."
+          echo "Deleting boardgames ingress to remove ALB..."
           kubectl delete ingress boardgames -n boardgames --wait=false
-          sleep 30
         fi
+        sleep 30
         if kubectl get pvc db-storage -n boardgames &>/dev/null; then
           echo "Deleting PVC to remove EBS volume..."
           kubectl delete pvc db-storage -n boardgames --wait=false
