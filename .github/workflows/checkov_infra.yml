@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [ opened, edited, reopened, synchronize ]
   push:
-    branches: [ main, develop ]
+    branches: [ main ]
     paths:
     - 'infra/terraform/**'
     - 'infra/docker/**'
