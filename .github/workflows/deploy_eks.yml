@@ -1,9 +1,11 @@
 name: Deploy to EKS
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows:
+      - "Build and Push to ECR"
+    types:
+      - completed
   workflow_dispatch:
     inputs:
       image_tag:
@@ -19,8 +21,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     env:
-      IMAGE_TAG: ${{ github.event.inputs.image_tag || github.sha }}
+      IMAGE_TAG: ${{ github.event.inputs.image_tag || github.event.workflow_run.head_sha }}
 
     steps:
     - name: Checkout repository
@@ -53,3 +56,16 @@ jobs:
         kubectl rollout status deployment/backend -n boardgames --timeout=120s
         kubectl rollout status deployment/frontend -n boardgames --timeout=120s
         kubectl rollout status deployment/db -n boardgames --timeout=120s
+
+    - name: Print application URL
+      run: |
+        echo "Waiting for ingress address..."
+        for i in $(seq 1 12); do
+          ADDRESS=$(kubectl get ingress boardgames -n boardgames -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' 2>/dev/null)
+          if [ -n "$ADDRESS" ]; then
+            echo "Application URL: http://$ADDRESS"
+            exit 0
+          fi
+          sleep 10
+        done
+        echo "Ingress address not yet available — check 'kubectl get ingress boardgames -n boardgames'"

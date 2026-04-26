@@ -64,6 +64,7 @@
         "ec2:DescribeAddresses",
         "ec2:DescribeAddressesAttribute",
         "ec2:DescribeAvailabilityZones",
+        "ec2:DescribeNetworkInterfaces",
         "ec2:DescribeTags"
       ],
       "Resource": "*"
@@ -84,6 +85,7 @@
         "ec2:DetachInternetGateway",
         "ec2:AllocateAddress",
         "ec2:ReleaseAddress",
+        "ec2:DisassociateAddress",
         "ec2:CreateNatGateway",
         "ec2:DeleteNatGateway",
         "ec2:CreateRouteTable",
@@ -173,7 +175,8 @@
         "eks:DeleteAddon",
         "eks:DescribeAddon",
         "eks:DescribeAddonVersions",
-        "eks:UpdateAddon"
+        "eks:UpdateAddon",
+        "eks:DescribeUpdate"
       ],
       "Resource": [
         "arn:aws:eks:eu-central-1:${account_id}:cluster/boardgames-${environment}-eks",
@@ -201,7 +204,8 @@
       "Resource": [
         "arn:aws:iam::${account_id}:role/boardgames-${environment}-eks-cluster-role",
         "arn:aws:iam::${account_id}:role/boardgames-${environment}-eks-node-role",
-        "arn:aws:iam::${account_id}:role/boardgames-${environment}-irsa-role"
+        "arn:aws:iam::${account_id}:role/boardgames-${environment}-irsa-role",
+        "arn:aws:iam::${account_id}:role/boardgames-${environment}-ebs-csi-role"
       ]
     },
     {

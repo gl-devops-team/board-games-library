@@ -5,7 +5,7 @@ on:
     types: [ opened, edited, reopened, synchronize ]
 
 jobs:
-  validate:
+  commit-validation:
     runs-on: ubuntu-latest
 
     steps:
