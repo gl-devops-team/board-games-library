@@ -205,7 +205,8 @@
         "arn:aws:iam::${account_id}:role/boardgames-${environment}-eks-cluster-role",
         "arn:aws:iam::${account_id}:role/boardgames-${environment}-eks-node-role",
         "arn:aws:iam::${account_id}:role/boardgames-${environment}-irsa-role",
-        "arn:aws:iam::${account_id}:role/boardgames-${environment}-ebs-csi-role"
+        "arn:aws:iam::${account_id}:role/boardgames-${environment}-ebs-csi-role",
+        "arn:aws:iam::${account_id}:role/boardgames-${environment}-cloudwatch-agent-role"
       ]
     },
     {
@@ -263,7 +264,11 @@
         "logs:TagResource",
         "logs:ListTagsForResource"
       ],
-      "Resource": "arn:aws:logs:eu-central-1:${account_id}:log-group:/aws/eks/boardgames-${environment}-eks/*"
+      "Resource": [
+        "arn:aws:logs:eu-central-1:${account_id}:log-group:/aws/eks/boardgames-${environment}-eks/*",
+        "arn:aws:logs:eu-central-1:${account_id}:log-group:/aws/containerinsights/boardgames-${environment}-eks/*",
+        "arn:aws:logs:eu-central-1:${account_id}:log-group:/aws/vpc/boardgames-${environment}/*"
+      ]
     },
     {
       "Sid": "ManageSecretsManager",
@@ -391,6 +396,23 @@
         "iam:TagPolicy"
       ],
       "Resource": "arn:aws:iam::${account_id}:policy/boardgames-${environment}-lbc-policy"
+    },
+    {
+      "Sid": "ManageVpcFlowLogsIam",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole", "iam:DeleteRole", "iam:GetRole", "iam:TagRole",
+        "iam:AttachRolePolicy", "iam:DetachRolePolicy",
+        "iam:ListRolePolicies", "iam:ListAttachedRolePolicies",
+        "iam:ListInstanceProfilesForRole",
+        "iam:CreatePolicy", "iam:DeletePolicy", "iam:GetPolicy",
+        "iam:GetPolicyVersion", "iam:ListPolicyVersions",
+        "iam:CreatePolicyVersion", "iam:DeletePolicyVersion", "iam:TagPolicy"
+      ],
+      "Resource": [
+        "arn:aws:iam::${account_id}:role/boardgames-${environment}-vpc-flow-logs-role",
+        "arn:aws:iam::${account_id}:policy/boardgames-${environment}-vpc-flow-logs-policy"
+      ]
     }
   ]
 }
