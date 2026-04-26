@@ -120,7 +120,7 @@ resource "aws_route_table_association" "private" {
 resource "aws_cloudwatch_log_group" "flow_logs" {
   #checkov:skip=CKV_AWS_158: KMS encryption for log groups adds cost with no practical benefit for a PoC
   name              = "/aws/vpc/${local.name_prefix}/flow-logs"
-  retention_in_days = 30
+  retention_in_days = 365
 
   tags = merge(local.common_tags, { Name = "${local.name_prefix}-flow-logs" })
 }
