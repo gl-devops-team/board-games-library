@@ -1,0 +1,47 @@
+name: Build and Push to ECR
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v6
+      with:
+        role-to-assume: ${{ vars.AWS_PLATFORM_ROLE_ARN }}
+        aws-region: eu-central-1
+
+    - name: Login to ECR
+      run: |
+        aws ecr get-login-password --region eu-central-1 \
+          | docker login --username AWS --password-stdin \
+            ${{ vars.ECR_REGISTRY }}
+
+    - name: Build and push backend
+      run: |
+        docker build \
+          -f infra/docker/backend.Dockerfile \
+          -t ${{ vars.ECR_REGISTRY }}/boardgames-dev/backend:${{ github.sha }} \
+          .
+        docker push ${{ vars.ECR_REGISTRY }}/boardgames-dev/backend:${{ github.sha }}
+
+    - name: Build and push frontend
+      run: |
+        docker build \
+          -f infra/docker/frontend.Dockerfile \
+          --build-arg VITE_API_URL="" \
+          -t ${{ vars.ECR_REGISTRY }}/boardgames-dev/frontend:${{ github.sha }} \
+          .
+        docker push ${{ vars.ECR_REGISTRY }}/boardgames-dev/frontend:${{ github.sha }}
