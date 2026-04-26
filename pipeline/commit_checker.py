@@ -16,6 +16,7 @@ ALLOWED_TYPES = [
     "ci",
     "style",
     "revert",
+    "hotfix",
 ]
 
 # Issue-ID formats we accept in text:

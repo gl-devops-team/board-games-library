@@ -48,8 +48,10 @@ resource "aws_iam_role_policy_attachment" "node_ebs_csi" {
 resource "aws_iam_role" "irsa" {
   name = "${local.name_prefix}-irsa-role"
   assume_role_policy = templatefile("${path.module}/policies/irsa-trust.json.tftpl", {
-    oidc_provider_arn = aws_iam_openid_connect_provider.eks.arn
-    oidc_issuer       = replace(aws_eks_cluster.main.identity[0].oidc[0].issuer, "https://", "")
+    oidc_provider_arn    = aws_iam_openid_connect_provider.eks.arn
+    oidc_issuer          = replace(aws_eks_cluster.main.identity[0].oidc[0].issuer, "https://", "")
+    namespace            = var.irsa_namespace
+    service_account_name = var.irsa_service_account_name
   })
 
   tags = { Name = "${local.name_prefix}-irsa-role" }
