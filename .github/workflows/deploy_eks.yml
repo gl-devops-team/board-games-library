@@ -1,12 +1,16 @@
 name: Deploy to EKS
 
 on:
-  workflow_run:
-    workflows: ["Build and Push to ECR"]
-    types:
-      - completed
+  push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Image tag (commit SHA) to deploy (leave empty for latest commit on main)"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   id-token: write
@@ -15,10 +19,8 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-
     env:
-      IMAGE_TAG: ${{ github.event.workflow_run.head_sha }}
+      IMAGE_TAG: ${{ github.event.inputs.image_tag || github.sha }}
 
     steps:
     - name: Checkout repository
