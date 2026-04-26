@@ -5,6 +5,8 @@ metadata:
   namespace: monitoring
   annotations:
     checkov.io/skip1: "CKV_K8S_43=Image digest pinning impractical in development"
+    checkov.io/skip2: "CKV_K8S_38=automountServiceAccountToken is required for IRSA — EKS webhook injects the web-identity token used to assume the Grafana CloudWatch role"
+    checkov.io/skip3: "CKV_K8S_40=Grafana official image requires UID 472; using a high UID would break file permission on /var/lib/grafana"
 spec:
   replicas: 1
   selector:
@@ -29,7 +31,7 @@ spec:
       containers:
         - name: grafana
           image: grafana/grafana:11.4.0
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
               name: http
