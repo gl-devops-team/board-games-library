@@ -17,6 +17,11 @@ on:
         required: false
         default: "false"
         type: boolean
+      setup_cluster:
+        description: "Run cluster setup after apply (installs LBC + ESO, one-time after cluster creation)"
+        required: false
+        default: "false"
+        type: boolean
 
 permissions:
   id-token: write
@@ -75,3 +80,8 @@ jobs:
     - name: Terraform Destroy
       if: ${{ github.event.inputs.action == 'destroy' && github.event.inputs.confirm_destroy == 'true' }}
       run: terraform destroy -auto-approve
+
+  cluster-setup:
+    needs: terraform-env-dev
+    if: ${{ github.event.inputs.action == 'apply' && github.event.inputs.setup_cluster == 'true' }}
+    uses: ./.github/workflows/cluster_setup.yml

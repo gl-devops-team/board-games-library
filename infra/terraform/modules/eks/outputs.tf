@@ -19,6 +19,11 @@ output "oidc_provider_arn" {
   value       = aws_iam_openid_connect_provider.eks.arn
 }
 
+output "oidc_issuer" {
+  description = "OIDC issuer URL without https:// prefix — used in IRSA trust policies"
+  value       = replace(aws_eks_cluster.main.identity[0].oidc[0].issuer, "https://", "")
+}
+
 output "cluster_role_arn" {
   description = "ARN of the EKS cluster IAM role"
   value       = aws_iam_role.cluster.arn
