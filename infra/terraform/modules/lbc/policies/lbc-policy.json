@@ -17,6 +17,7 @@
         "elasticloadbalancing:DeleteTargetGroup",
         "elasticloadbalancing:DeregisterTargets",
         "elasticloadbalancing:DescribeListenerCertificates",
+        "elasticloadbalancing:DescribeListenerAttributes",
         "elasticloadbalancing:DescribeListeners",
         "elasticloadbalancing:DescribeLoadBalancerAttributes",
         "elasticloadbalancing:DescribeLoadBalancers",

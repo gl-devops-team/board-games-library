@@ -1,0 +1,32 @@
+name: Validate Build
+
+on:
+  pull_request:
+    branches:
+    - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Validate backend build
+      run: |
+        docker build \
+          -f infra/docker/backend.Dockerfile \
+          -t boardgames-dev/backend:${{ github.sha }} \
+          .
+
+    - name: Validate frontend build
+      run: |
+        docker build \
+          -f infra/docker/frontend.Dockerfile \
+          --build-arg VITE_API_URL="" \
+          -t boardgames-dev/frontend:${{ github.sha }} \
+          .

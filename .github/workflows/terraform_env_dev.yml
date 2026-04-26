@@ -77,6 +77,27 @@ jobs:
       if: ${{ github.event.inputs.action == 'destroy' }}
       run: terraform plan -destroy
 
+    - name: Cleanup Kubernetes resources before destroy
+      if: ${{ github.event.inputs.action == 'destroy' && github.event.inputs.confirm_destroy == 'true' }}
+      run: |
+        if ! aws eks describe-cluster --name boardgames-dev-eks --region eu-central-1 &>/dev/null; then
+          echo "EKS cluster not found, skipping Kubernetes cleanup"
+          exit 0
+        fi
+        aws eks update-kubeconfig --region eu-central-1 --name boardgames-dev-eks
+        echo "Deleting monitoring namespace (Grafana + Ingress)..."
+        kubectl delete namespace monitoring --ignore-not-found --wait=false
+        if kubectl get ingress boardgames -n boardgames &>/dev/null; then
+          echo "Deleting boardgames ingress to remove ALB..."
+          kubectl delete ingress boardgames -n boardgames --wait=false
+          sleep 30
+        fi
+        if kubectl get pvc db-storage -n boardgames &>/dev/null; then
+          echo "Deleting PVC to remove EBS volume..."
+          kubectl delete pvc db-storage -n boardgames --wait=false
+          sleep 30
+        fi
+
     - name: Terraform Destroy
       if: ${{ github.event.inputs.action == 'destroy' && github.event.inputs.confirm_destroy == 'true' }}
       run: terraform destroy -auto-approve

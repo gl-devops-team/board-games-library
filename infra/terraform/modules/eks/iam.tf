@@ -43,6 +43,25 @@ resource "aws_iam_role_policy_attachment" "node_ebs_csi" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 }
 
+# --- EBS CSI Driver IRSA Role ---
+
+resource "aws_iam_role" "ebs_csi" {
+  name = "${local.name_prefix}-ebs-csi-role"
+  assume_role_policy = templatefile("${path.module}/policies/irsa-trust.json.tftpl", {
+    oidc_provider_arn    = aws_iam_openid_connect_provider.eks.arn
+    oidc_issuer          = replace(aws_eks_cluster.main.identity[0].oidc[0].issuer, "https://", "")
+    namespace            = "kube-system"
+    service_account_name = "ebs-csi-controller-sa"
+  })
+
+  tags = { Name = "${local.name_prefix}-ebs-csi-role" }
+}
+
+resource "aws_iam_role_policy_attachment" "ebs_csi" {
+  role       = aws_iam_role.ebs_csi.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+}
+
 # --- IRSA Role ---
 
 resource "aws_iam_role" "irsa" {
