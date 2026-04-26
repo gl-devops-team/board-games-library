@@ -83,7 +83,8 @@ spec:
               mountPath: /var/run/postgresql
       volumes:
         - name: db-storage
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: db-storage
         - name: tmp
           emptyDir: {}
         - name: run-postgresql
