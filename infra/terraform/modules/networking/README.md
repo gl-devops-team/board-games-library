@@ -24,6 +24,7 @@ modules/networking/
 ├── locals.tf     - CIDR blocks, AZ list, name prefix, common tags
 ├── variables.tf  - input variables (aws_region, project, environment, component)
 ├── outputs.tf    - vpc_id, public_subnet_ids, private_subnet_ids, nat_gateway_ids
+├── providers.tf  - AWS provider with default tags
 └── versions.tf   - Terraform and provider version constraints (no backend block)
 ```
 

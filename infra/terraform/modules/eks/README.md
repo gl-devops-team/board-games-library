@@ -18,11 +18,13 @@ modules/eks/
 ├── main.tf       - EKS cluster, node group, OIDC provider, security groups, access entries
 ├── iam.tf        - IAM roles (cluster, node, IRSA) and policy attachments
 ├── policies/
+│   ├── cloudwatch-agent-trust.json.tftpl   - Cloudwatch agent trust policy   
 │   ├── cluster-trust.json.tftpl   - EKS service trust policy
 │   ├── node-trust.json.tftpl      - EC2 service trust policy
 │   ├── irsa-trust.json.tftpl      - OIDC federation trust policy
 │   └── irsa-permissions.json.tftpl - ECR pull + Secrets Manager read
 ├── locals.tf     - name prefix, common tags
+├── observability.tf  - EKS logging and alerts
 ├── variables.tf  - input variables
 ├── outputs.tf    - cluster endpoint, role ARNs, security group IDs
 ├── providers.tf  - AWS provider with default tags
