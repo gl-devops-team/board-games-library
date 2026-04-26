@@ -2,8 +2,6 @@ resource "aws_vpc" "main" {
   cidr_block           = local.vpc_cidr
   enable_dns_hostnames = true
   enable_dns_support   = true
-
-  #checkov:skip=CKV2_AWS_11: VPC flow logs require a dedicated CloudWatch log group and IAM role - out of scope for this module
 }
 
 resource "aws_default_security_group" "default" {

@@ -3,7 +3,7 @@
 resource "aws_cloudwatch_log_group" "container_insights" {
   #checkov:skip=CKV_AWS_158: KMS encryption for log groups adds cost with no practical benefit for a PoC
   name              = "/aws/containerinsights/${aws_eks_cluster.main.name}/application"
-  retention_in_days = 30
+  retention_in_days = 365
 
   tags = { Name = "${local.name_prefix}-app-logs" }
 }
