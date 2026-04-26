@@ -166,7 +166,8 @@
       "Resource": [
         "arn:aws:eks:eu-central-1:${account_id}:cluster/boardgames-${environment}-eks",
         "arn:aws:eks:eu-central-1:${account_id}:nodegroup/boardgames-${environment}-eks/boardgames-${environment}-eks-nodes/*",
-        "arn:aws:eks:eu-central-1:${account_id}:access-entry/boardgames-${environment}-eks/*"
+        "arn:aws:eks:eu-central-1:${account_id}:access-entry/boardgames-${environment}-eks/*",
+        "arn:aws:eks:eu-central-1:${account_id}:addon/boardgames-${environment}-eks/*"
       ]
     },
     {
@@ -324,15 +325,24 @@
       "Resource": "arn:aws:kms:eu-central-1:${account_id}:key/*"
     },
     {
-      "Sid": "CreateEksServiceLinkedRole",
+      "Sid": "CreateEksServiceLinkedRoles",
       "Effect": "Allow",
       "Action": "iam:CreateServiceLinkedRole",
       "Resource": "*",
       "Condition": {
         "StringEquals": {
-          "iam:AWSServiceName": "eks.amazonaws.com"
+          "iam:AWSServiceName": [
+            "eks.amazonaws.com",
+            "eks-nodegroup.amazonaws.com"
+          ]
         }
       }
+    },
+    {
+      "Sid": "GetServiceLinkedRoles",
+      "Effect": "Allow",
+      "Action": "iam:GetRole",
+      "Resource": "*"
     },
     {
       "Sid": "ManageLbcIamRole",
