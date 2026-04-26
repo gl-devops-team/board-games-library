@@ -90,8 +90,8 @@ jobs:
         if kubectl get ingress boardgames -n boardgames &>/dev/null; then
           echo "Deleting boardgames ingress to remove ALB..."
           kubectl delete ingress boardgames -n boardgames --wait=false
-          sleep 30
         fi
+        sleep 30
         if kubectl get pvc db-storage -n boardgames &>/dev/null; then
           echo "Deleting PVC to remove EBS volume..."
           kubectl delete pvc db-storage -n boardgames --wait=false

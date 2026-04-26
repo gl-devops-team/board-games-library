@@ -6,7 +6,8 @@ metadata:
 data:
   grafana.ini: |
     [server]
-    root_url = http://localhost:3000
+    root_url = %(protocol)s://%(domain)s/grafana
+    serve_from_sub_path = true
 
     [auth.anonymous]
     enabled = false
