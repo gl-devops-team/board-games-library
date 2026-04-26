@@ -118,9 +118,21 @@ resource "aws_eks_node_group" "main" {
     aws_iam_role_policy_attachment.node_worker,
     aws_iam_role_policy_attachment.node_cni,
     aws_iam_role_policy_attachment.node_ecr,
+    aws_iam_role_policy_attachment.node_ebs_csi,
   ]
 
   tags = { Name = "${local.name_prefix}-eks-nodes" }
+}
+
+# --- EBS CSI Driver Add-on ---
+
+resource "aws_eks_addon" "ebs_csi" {
+  cluster_name = aws_eks_cluster.main.name
+  addon_name   = "aws-ebs-csi-driver"
+
+  depends_on = [aws_eks_node_group.main]
+
+  tags = { Name = "${local.name_prefix}-ebs-csi" }
 }
 
 # --- OIDC Provider (for IRSA) ---

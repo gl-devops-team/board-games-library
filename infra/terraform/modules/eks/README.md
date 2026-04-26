@@ -38,13 +38,14 @@ modules/eks/
 | `aws_iam_openid_connect_provider` | 1 | OIDC for IRSA |
 | `aws_iam_role` | 3 | cluster-role, node-role, irsa-role |
 | `aws_iam_policy` | 1 | IRSA permissions (ECR pull, Secrets Manager) |
-| `aws_iam_role_policy_attachment` | 5 | AWS managed + custom policies |
+| `aws_iam_role_policy_attachment` | 6 | AWS managed + custom policies |
 | `aws_security_group` | 2 | Control plane, nodes |
 | `aws_security_group_rule` | 4 | Egress, node↔cluster, node↔node |
 | `aws_eks_access_entry` | 1 | Platform role → cluster admin |
 | `aws_eks_access_policy_association` | 1 | AmazonEKSClusterAdminPolicy |
+| `aws_eks_addon` | 1 | EBS CSI driver for persistent volumes |
 
-Total: **20 resources**
+Total: **22 resources**
 
 ## Security groups
 
@@ -56,7 +57,7 @@ Total: **20 resources**
 | Role | Trust | Policies |
 |---|---|---|
 | `eks-cluster-role` | `eks.amazonaws.com` | AmazonEKSClusterPolicy |
-| `eks-node-role` | `ec2.amazonaws.com` | AmazonEKSWorkerNodePolicy, AmazonEKS_CNI_Policy, AmazonEC2ContainerRegistryReadOnly |
+| `eks-node-role` | `ec2.amazonaws.com` | AmazonEKSWorkerNodePolicy, AmazonEKS_CNI_Policy, AmazonEC2ContainerRegistryReadOnly, AmazonEBSCSIDriverPolicy |
 | `irsa-role` | OIDC federation | ECR pull, Secrets Manager read (scoped to `boardgames-dev-*`) |
 
 ## Usage
