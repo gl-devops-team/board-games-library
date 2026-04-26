@@ -61,6 +61,9 @@ jobs:
           --set installCRDs=true \
           --wait
 
+    - name: Create boardgames namespace
+      run: kubectl create namespace boardgames --dry-run=client -o yaml | kubectl apply -f -
+
     - name: Apply LBC ServiceAccount
       run: |
         export LBC_ROLE_ARN=$(terraform -chdir=infra/terraform/environments/dev output -raw lbc_role_arn)
@@ -72,6 +75,13 @@ jobs:
         envsubst < infra/k8s/eso/service-account.yaml | kubectl apply -f -
         kubectl apply -f infra/k8s/eso/secret-store.yaml
         kubectl apply -f infra/k8s/eso/external-secrets.yaml
+
+    - name: Wait for ESO secret sync
+      run: |
+        kubectl wait --for=condition=Ready externalsecret/db-credentials \
+          -n boardgames --timeout=120s
+        kubectl wait --for=condition=Ready externalsecret/app-credentials \
+          -n boardgames --timeout=120s
 
     - name: Apply Ingress
       run: kubectl apply -f infra/k8s/ingress.yaml
