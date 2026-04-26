@@ -70,6 +70,33 @@ Ref: <https://py-pkgs.org/07-releasing-versioning.html#automatic-version-bumping
 > - build: Changes to the build process or tools.
 
 
+## Deployment
+
+The application is deployed to AWS EKS. Deployment is fully automated via GitHub Actions:
+
+| Workflow | Trigger | What it does |
+|---|---|---|
+| `build_and_push.yml` | Push to `main` | Builds Docker images and pushes to ECR with commit SHA tag |
+| `deploy_eks.yml` | After `build_and_push` succeeds | Updates image tags in K8s manifests and applies to EKS cluster |
+
+### Prerequisites before first deploy
+
+1. Run `terraform_env_dev` workflow with `action=apply` and `setup_cluster=true` — provisions AWS infrastructure and installs LBC + ESO on the cluster in one run
+2. Set GitHub repository variable `ECR_REGISTRY` to your ECR registry URL (`Settings → Variables → Actions`)
+
+### Local development with Docker Compose
+
+```bash
+cp .env.example .env  # fill in DB credentials
+docker compose -f infra/docker/docker-compose.yml --env-file .env up --build
+```
+
+### Local development with Kubernetes (minikube)
+
+See [infra/k8s/eso/README.md](infra/k8s/eso/README.md) and [infra/k8s/lbc/service-account.yaml](infra/k8s/lbc/service-account.yaml) for setup instructions.
+
+---
+
 ## Workflow
 
 We are working with Gitflow currently, so we have the following branches:
