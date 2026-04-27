@@ -48,3 +48,8 @@ output "node_security_group_id" {
   description = "ID of the EKS node security group"
   value       = aws_security_group.node.id
 }
+
+output "cloudwatch_agent_role_arn" {
+  description = "ARN of the IRSA role for the CloudWatch agent (Container Insights)"
+  value       = aws_iam_role.cloudwatch_agent.arn
+}

@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     env:
-      IMAGE_TAG: ${{ github.event.inputs.image_tag || github.event.workflow_run.head_sha }}
+      IMAGE_TAG: ${{ github.event.inputs.image_tag || github.event.workflow_run.head_sha || github.sha }}
 
     steps:
     - name: Checkout repository

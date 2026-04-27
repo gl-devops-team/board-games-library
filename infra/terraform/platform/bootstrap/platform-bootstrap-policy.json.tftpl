@@ -10,11 +10,7 @@
     {
       "Sid": "ManagePlatformState",
       "Effect": "Allow",
-      "Action": [
-        "s3:GetObject",
-        "s3:PutObject",
-        "s3:DeleteObject"
-      ],
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
       "Resource": [
         "arn:aws:s3:::${bucket_name}/platform/${environment}/terraform.tfstate",
         "arn:aws:s3:::${bucket_name}/platform/${environment}/terraform.tfstate.tflock",
@@ -31,99 +27,65 @@
     {
       "Sid": "ReadPlatformRole",
       "Effect": "Allow",
-      "Action": [
-        "iam:GetRole",
-        "iam:ListAttachedRolePolicies"
-      ],
+      "Action": ["iam:GetRole", "iam:ListAttachedRolePolicies"],
       "Resource": "arn:aws:iam::${account_id}:role/${platform_role_name}"
     },
     {
       "Sid": "ManageTfstatePolicy",
       "Effect": "Allow",
       "Action": [
-        "iam:CreatePolicy",
-        "iam:GetPolicy",
-        "iam:GetPolicyVersion",
-        "iam:ListPolicyVersions",
-        "iam:CreatePolicyVersion",
-        "iam:DeletePolicyVersion",
-        "iam:TagPolicy"
+        "iam:CreatePolicy", "iam:GetPolicy", "iam:GetPolicyVersion",
+        "iam:ListPolicyVersions", "iam:CreatePolicyVersion",
+        "iam:DeletePolicyVersion", "iam:TagPolicy"
       ],
       "Resource": "arn:aws:iam::${account_id}:policy/${tfstate_policy_name}"
     },
     {
-      "Sid": "DescribeNetworkingResources",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:DescribeVpcs",
-        "ec2:DescribeVpcAttribute",
-        "ec2:DescribeSubnets",
-        "ec2:DescribeInternetGateways",
-        "ec2:DescribeNatGateways",
-        "ec2:DescribeRouteTables",
-        "ec2:DescribeAddresses",
-        "ec2:DescribeAddressesAttribute",
-        "ec2:DescribeAvailabilityZones",
-        "ec2:DescribeNetworkInterfaces",
-        "ec2:DescribeTags"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "ManageNetworkingResources",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:CreateVpc",
-        "ec2:DeleteVpc",
-        "ec2:ModifyVpcAttribute",
-        "ec2:CreateSubnet",
-        "ec2:DeleteSubnet",
-        "ec2:ModifySubnetAttribute",
-        "ec2:CreateInternetGateway",
-        "ec2:DeleteInternetGateway",
-        "ec2:AttachInternetGateway",
-        "ec2:DetachInternetGateway",
-        "ec2:AllocateAddress",
-        "ec2:ReleaseAddress",
-        "ec2:DisassociateAddress",
-        "ec2:CreateNatGateway",
-        "ec2:DeleteNatGateway",
-        "ec2:CreateRouteTable",
-        "ec2:DeleteRouteTable",
-        "ec2:CreateRoute",
-        "ec2:DeleteRoute",
-        "ec2:AssociateRouteTable",
-        "ec2:DisassociateRouteTable",
-        "ec2:CreateTags",
-        "ec2:DeleteTags"
-      ],
-      "Resource": "*"
-    },
-    {
       "Sid": "AttachPolicyToRole",
       "Effect": "Allow",
-      "Action": [
-        "iam:AttachRolePolicy",
-        "iam:DetachRolePolicy"
-      ],
+      "Action": ["iam:AttachRolePolicy", "iam:DetachRolePolicy"],
       "Resource": "arn:aws:iam::${account_id}:role/${platform_role_name}"
+    },
+    {
+      "Sid": "ManageProjectIamRoles",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole", "iam:DeleteRole", "iam:GetRole",
+        "iam:TagRole", "iam:UntagRole",
+        "iam:ListRolePolicies", "iam:ListAttachedRolePolicies",
+        "iam:ListInstanceProfilesForRole",
+        "iam:AttachRolePolicy", "iam:DetachRolePolicy", "iam:PassRole"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:role/boardgames-${environment}-*"
+    },
+    {
+      "Sid": "ManageProjectIamPolicies",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreatePolicy", "iam:DeletePolicy", "iam:GetPolicy",
+        "iam:GetPolicyVersion", "iam:ListPolicyVersions",
+        "iam:CreatePolicyVersion", "iam:DeletePolicyVersion", "iam:TagPolicy"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:policy/boardgames-${environment}-*"
+    },
+    {
+      "Sid": "ManageOidcProvider",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateOpenIDConnectProvider", "iam:DeleteOpenIDConnectProvider",
+        "iam:GetOpenIDConnectProvider", "iam:TagOpenIDConnectProvider",
+        "iam:AddClientIDToOpenIDConnectProvider"
+      ],
+      "Resource": "arn:aws:iam::${account_id}:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/*"
     },
     {
       "Sid": "ManageEcrRepositories",
       "Effect": "Allow",
       "Action": [
-        "ecr:CreateRepository",
-        "ecr:DeleteRepository",
-        "ecr:DescribeRepositories",
-        "ecr:ListTagsForResource",
-        "ecr:TagResource",
-        "ecr:UntagResource",
-        "ecr:PutLifecyclePolicy",
-        "ecr:GetLifecyclePolicy",
-        "ecr:DeleteLifecyclePolicy",
-        "ecr:SetRepositoryPolicy",
-        "ecr:GetRepositoryPolicy",
-        "ecr:DeleteRepositoryPolicy",
+        "ecr:CreateRepository", "ecr:DeleteRepository", "ecr:DescribeRepositories",
+        "ecr:ListTagsForResource", "ecr:TagResource", "ecr:UntagResource",
+        "ecr:PutLifecyclePolicy", "ecr:GetLifecyclePolicy", "ecr:DeleteLifecyclePolicy",
+        "ecr:SetRepositoryPolicy", "ecr:GetRepositoryPolicy", "ecr:DeleteRepositoryPolicy",
         "ecr:PutImageScanningConfiguration"
       ],
       "Resource": "arn:aws:ecr:eu-central-1:${account_id}:repository/boardgames-${environment}/*"
@@ -131,20 +93,15 @@
     {
       "Sid": "DescribeEcrAuthorization",
       "Effect": "Allow",
-      "Action": [
-        "ecr:GetAuthorizationToken"
-      ],
+      "Action": ["ecr:GetAuthorizationToken"],
       "Resource": "*"
     },
     {
       "Sid": "PushEcrImages",
       "Effect": "Allow",
       "Action": [
-        "ecr:InitiateLayerUpload",
-        "ecr:UploadLayerPart",
-        "ecr:CompleteLayerUpload",
-        "ecr:PutImage",
-        "ecr:BatchCheckLayerAvailability"
+        "ecr:InitiateLayerUpload", "ecr:UploadLayerPart",
+        "ecr:CompleteLayerUpload", "ecr:PutImage", "ecr:BatchCheckLayerAvailability"
       ],
       "Resource": "arn:aws:ecr:eu-central-1:${account_id}:repository/boardgames-${environment}/*"
     },
@@ -152,31 +109,16 @@
       "Sid": "ManageEksCluster",
       "Effect": "Allow",
       "Action": [
-        "eks:CreateCluster",
-        "eks:DeleteCluster",
-        "eks:DescribeCluster",
-        "eks:UpdateClusterConfig",
-        "eks:UpdateClusterVersion",
-        "eks:TagResource",
-        "eks:UntagResource",
-        "eks:ListTagsForResource",
-        "eks:CreateNodegroup",
-        "eks:DeleteNodegroup",
-        "eks:DescribeNodegroup",
-        "eks:UpdateNodegroupConfig",
-        "eks:UpdateNodegroupVersion",
-        "eks:CreateAccessEntry",
-        "eks:DeleteAccessEntry",
-        "eks:DescribeAccessEntry",
-        "eks:AssociateAccessPolicy",
-        "eks:DisassociateAccessPolicy",
+        "eks:CreateCluster", "eks:DeleteCluster", "eks:DescribeCluster",
+        "eks:UpdateClusterConfig", "eks:UpdateClusterVersion",
+        "eks:TagResource", "eks:UntagResource", "eks:ListTagsForResource",
+        "eks:CreateNodegroup", "eks:DeleteNodegroup", "eks:DescribeNodegroup",
+        "eks:UpdateNodegroupConfig", "eks:UpdateNodegroupVersion",
+        "eks:CreateAccessEntry", "eks:DeleteAccessEntry", "eks:DescribeAccessEntry",
+        "eks:AssociateAccessPolicy", "eks:DisassociateAccessPolicy",
         "eks:ListAssociatedAccessPolicies",
-        "eks:CreateAddon",
-        "eks:DeleteAddon",
-        "eks:DescribeAddon",
-        "eks:DescribeAddonVersions",
-        "eks:UpdateAddon",
-        "eks:DescribeUpdate"
+        "eks:CreateAddon", "eks:DeleteAddon", "eks:DescribeAddon",
+        "eks:DescribeAddonVersions", "eks:UpdateAddon", "eks:DescribeUpdate"
       ],
       "Resource": [
         "arn:aws:eks:eu-central-1:${account_id}:cluster/boardgames-${environment}-eks",
@@ -186,171 +128,13 @@
       ]
     },
     {
-      "Sid": "ManageEksIamRoles",
-      "Effect": "Allow",
-      "Action": [
-        "iam:CreateRole",
-        "iam:DeleteRole",
-        "iam:GetRole",
-        "iam:TagRole",
-        "iam:UntagRole",
-        "iam:ListRolePolicies",
-        "iam:ListAttachedRolePolicies",
-        "iam:ListInstanceProfilesForRole",
-        "iam:AttachRolePolicy",
-        "iam:DetachRolePolicy",
-        "iam:PassRole"
-      ],
-      "Resource": [
-        "arn:aws:iam::${account_id}:role/boardgames-${environment}-eks-cluster-role",
-        "arn:aws:iam::${account_id}:role/boardgames-${environment}-eks-node-role",
-        "arn:aws:iam::${account_id}:role/boardgames-${environment}-irsa-role",
-        "arn:aws:iam::${account_id}:role/boardgames-${environment}-ebs-csi-role"
-      ]
-    },
-    {
-      "Sid": "ManageEksIrsaPolicy",
-      "Effect": "Allow",
-      "Action": [
-        "iam:CreatePolicy",
-        "iam:DeletePolicy",
-        "iam:GetPolicy",
-        "iam:GetPolicyVersion",
-        "iam:ListPolicyVersions",
-        "iam:CreatePolicyVersion",
-        "iam:DeletePolicyVersion",
-        "iam:TagPolicy"
-      ],
-      "Resource": "arn:aws:iam::${account_id}:policy/boardgames-${environment}-irsa-permissions"
-    },
-    {
-      "Sid": "ManageOidcProvider",
-      "Effect": "Allow",
-      "Action": [
-        "iam:CreateOpenIDConnectProvider",
-        "iam:DeleteOpenIDConnectProvider",
-        "iam:GetOpenIDConnectProvider",
-        "iam:TagOpenIDConnectProvider",
-        "iam:AddClientIDToOpenIDConnectProvider"
-      ],
-      "Resource": "arn:aws:iam::${account_id}:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/*"
-    },
-    {
-      "Sid": "ManageEksSecurityGroups",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:CreateSecurityGroup",
-        "ec2:DeleteSecurityGroup",
-        "ec2:DescribeSecurityGroups",
-        "ec2:DescribeSecurityGroupRules",
-        "ec2:AuthorizeSecurityGroupIngress",
-        "ec2:RevokeSecurityGroupIngress",
-        "ec2:AuthorizeSecurityGroupEgress",
-        "ec2:RevokeSecurityGroupEgress",
-        "ec2:CreateTags",
-        "ec2:DeleteTags"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "EksClusterLogging",
-      "Effect": "Allow",
-      "Action": [
-        "logs:CreateLogGroup",
-        "logs:DeleteLogGroup",
-        "logs:DescribeLogGroups",
-        "logs:PutRetentionPolicy",
-        "logs:TagResource",
-        "logs:ListTagsForResource"
-      ],
-      "Resource": "arn:aws:logs:eu-central-1:${account_id}:log-group:/aws/eks/boardgames-${environment}-eks/*"
-    },
-    {
-      "Sid": "ManageSecretsManager",
-      "Effect": "Allow",
-      "Action": [
-        "secretsmanager:CreateSecret",
-        "secretsmanager:DeleteSecret",
-        "secretsmanager:DescribeSecret",
-        "secretsmanager:GetSecretValue",
-        "secretsmanager:PutSecretValue",
-        "secretsmanager:UpdateSecret",
-        "secretsmanager:TagResource",
-        "secretsmanager:UntagResource",
-        "secretsmanager:ListSecretVersionIds",
-        "secretsmanager:GetResourcePolicy",
-        "secretsmanager:PutResourcePolicy",
-        "secretsmanager:DeleteResourcePolicy"
-      ],
-      "Resource": "arn:aws:secretsmanager:eu-central-1:${account_id}:secret:boardgames-${environment}-*"
-    },
-    {
-      "Sid": "CreateKmsKey",
-      "Effect": "Allow",
-      "Action": "kms:CreateKey",
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "aws:RequestTag/Project": "boardgames"
-        }
-      }
-    },
-    {
-      "Sid": "ManageKmsKeys",
-      "Effect": "Allow",
-      "Action": [
-        "kms:DescribeKey",
-        "kms:GetKeyPolicy",
-        "kms:GetKeyRotationStatus",
-        "kms:ListResourceTags",
-        "kms:PutKeyPolicy",
-        "kms:ScheduleKeyDeletion",
-        "kms:CancelKeyDeletion",
-        "kms:EnableKeyRotation",
-        "kms:DisableKeyRotation",
-        "kms:TagResource",
-        "kms:UntagResource"
-      ],
-      "Resource": "arn:aws:kms:eu-central-1:${account_id}:key/*"
-    },
-    {
-      "Sid": "ManageKmsAliases",
-      "Effect": "Allow",
-      "Action": [
-        "kms:CreateAlias",
-        "kms:DeleteAlias"
-      ],
-      "Resource": [
-        "arn:aws:kms:eu-central-1:${account_id}:alias/boardgames-${environment}-*",
-        "arn:aws:kms:eu-central-1:${account_id}:key/*"
-      ]
-    },
-    {
-      "Sid": "ListKmsAliases",
-      "Effect": "Allow",
-      "Action": "kms:ListAliases",
-      "Resource": "*"
-    },
-    {
-      "Sid": "UseKmsKeyForSecrets",
-      "Effect": "Allow",
-      "Action": [
-        "kms:GenerateDataKey",
-        "kms:Decrypt"
-      ],
-      "Resource": "arn:aws:kms:eu-central-1:${account_id}:key/*"
-    },
-    {
       "Sid": "CreateEksServiceLinkedRoles",
       "Effect": "Allow",
       "Action": "iam:CreateServiceLinkedRole",
       "Resource": "*",
       "Condition": {
         "StringEquals": {
-          "iam:AWSServiceName": [
-            "eks.amazonaws.com",
-            "eks-nodegroup.amazonaws.com"
-          ]
+          "iam:AWSServiceName": ["eks.amazonaws.com", "eks-nodegroup.amazonaws.com"]
         }
       }
     },
@@ -359,38 +143,6 @@
       "Effect": "Allow",
       "Action": "iam:GetRole",
       "Resource": "*"
-    },
-    {
-      "Sid": "ManageLbcIamRole",
-      "Effect": "Allow",
-      "Action": [
-        "iam:CreateRole",
-        "iam:DeleteRole",
-        "iam:GetRole",
-        "iam:TagRole",
-        "iam:UntagRole",
-        "iam:ListRolePolicies",
-        "iam:ListAttachedRolePolicies",
-        "iam:ListInstanceProfilesForRole",
-        "iam:AttachRolePolicy",
-        "iam:DetachRolePolicy"
-      ],
-      "Resource": "arn:aws:iam::${account_id}:role/boardgames-${environment}-lbc-role"
-    },
-    {
-      "Sid": "ManageLbcIamPolicy",
-      "Effect": "Allow",
-      "Action": [
-        "iam:CreatePolicy",
-        "iam:DeletePolicy",
-        "iam:GetPolicy",
-        "iam:GetPolicyVersion",
-        "iam:ListPolicyVersions",
-        "iam:CreatePolicyVersion",
-        "iam:DeletePolicyVersion",
-        "iam:TagPolicy"
-      ],
-      "Resource": "arn:aws:iam::${account_id}:policy/boardgames-${environment}-lbc-policy"
     }
   ]
 }

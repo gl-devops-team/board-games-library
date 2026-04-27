@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+  annotations:
+    checkov.io/skip1: "CKV_K8S_43=Image digest pinning impractical in development"
+    checkov.io/skip2: "CKV_K8S_38=automountServiceAccountToken is required for IRSA — EKS webhook injects the web-identity token used to assume the Grafana CloudWatch role"
+    checkov.io/skip3: "CKV_K8S_40=Grafana official image requires UID 472; using a high UID would break file permission on /var/lib/grafana"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      serviceAccountName: grafana
+      # automountServiceAccountToken required for IRSA — EKS webhook mounts the
+      # web-identity token that the AWS SDK uses to exchange for STS credentials.
+      automountServiceAccountToken: true
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 472
+        runAsGroup: 472
+        fsGroup: 472
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: grafana
+          image: grafana/grafana:11.4.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              name: http
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 472
+            capabilities:
+              drop:
+                - ALL
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: grafana-data
+              mountPath: /var/lib/grafana
+            - name: grafana-logs
+              mountPath: /var/log/grafana
+            - name: grafana-ini
+              mountPath: /etc/grafana/grafana.ini
+              subPath: grafana.ini
+              readOnly: true
+            - name: grafana-datasources
+              mountPath: /etc/grafana/provisioning/datasources
+              readOnly: true
+      volumes:
+        - name: grafana-data
+          emptyDir: {}
+        - name: grafana-logs
+          emptyDir: {}
+        - name: grafana-ini
+          configMap:
+            name: grafana-config
+            items:
+              - key: grafana.ini
+                path: grafana.ini
+        - name: grafana-datasources
+          configMap:
+            name: grafana-config
+            items:
+              - key: datasource.yaml
+                path: datasource.yaml

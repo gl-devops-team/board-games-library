@@ -100,6 +100,17 @@ jobs:
     - name: Apply Ingress
       run: kubectl apply -f infra/k8s/ingress.yaml
 
+    - name: Apply Grafana manifests
+      run: |
+        kubectl apply -f infra/k8s/monitoring/namespace.yaml
+        export GRAFANA_ROLE_ARN=$(terraform -chdir=infra/terraform/environments/dev output -raw grafana_irsa_role_arn)
+        envsubst < infra/k8s/monitoring/grafana-serviceaccount.yaml | kubectl apply -f -
+        kubectl apply -f infra/k8s/monitoring/grafana-configmap.yaml
+        kubectl apply -f infra/k8s/monitoring/network-policy.yaml
+        kubectl apply -f infra/k8s/monitoring/grafana-deployment.yaml
+        kubectl apply -f infra/k8s/monitoring/grafana-service.yaml
+        kubectl apply -f infra/k8s/monitoring/grafana-ingress.yaml
+
     - name: Verify
       run: |
         kubectl wait --for=condition=ready pod \
@@ -107,3 +118,18 @@ jobs:
           -n kube-system \
           --timeout=120s
         kubectl get ingress -n boardgames
+
+    - name: Print Grafana access
+      run: |
+        kubectl rollout status deployment/grafana -n monitoring --timeout=120s
+        echo "Waiting for Grafana ingress address..."
+        for i in $(seq 1 12); do
+          ADDRESS=$(kubectl get ingress grafana -n monitoring \
+            -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' 2>/dev/null)
+          if [ -n "$ADDRESS" ]; then
+            echo "Grafana URL: http://$ADDRESS/grafana"
+            exit 0
+          fi
+          sleep 10
+        done
+        echo "Ingress address not yet available — check 'kubectl get ingress grafana -n monitoring'"
